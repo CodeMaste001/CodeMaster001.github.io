@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizaciones - Voxel Verse</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://cdn.discordapp.com/attachments/1321222458933772349/1329646391466659880/SPOILER_image.png?ex=679107f3&is=678fb673&hm=1fb1bd439c97b36ad8d631d6be42c7a3830809fe6f3ee3f78982325850e541d4&') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: rgba(34, 49, 63, 0.9); /* Azul oscuro */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            background-color: rgba(51, 51, 51, 0.9);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        nav a:hover, nav a.active {
+            background-color: #22313F; /* Azul oscuro */
+            transform: scale(1.1);
+        }
+        main {
+            flex: 1;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .update {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .update:hover {
+            transform: translateY(-5px);
+        }
+        footer {
+            background-color: rgba(51, 51, 51, 0.9);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer a {
+            color: #4CAF50; /* Verde */
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Actualizaciones de Voxel Verse</h1>
+    </header>
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+        <a href="updates.html" class="active"><i class="fas fa-bug"></i> Actualizaciones</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contacto</a>
+    </nav>
+    <main>
+        <section class="update">
+            <h2>Actualización 1.0.2</h2>
+            <p><strong>Jun Arreglado</strong></p>
+            <p>La ultimate de jun se arreglo y ya funciona,
+                Habilidades 2 y 3 arregladas (antes no te dejaba moverte ahora si)
+                Antes la ulti se te bugeaba la camara
+            </p>
+            <h3>Okarun Arreglado</h3>
+            <p>La ultimate 1 y 3 de okarun se arreglo, junto a eso la habilidad 4 se arreglo</p>
+            <h3>Nuevos emotes y mejoras de camaras de movimiento</h3>
+            <p>Se añadieron nuevos emotes que no dire para no arruinar la sorpresa 
+                Se mejoraron las camaras de movimiento para las ultimates 
+            </p>
+            <h3>Nueva pagina web</h3>
+            <p>Su fundador Alex Dev, Rogsc y Axel hicieron una pagina web de voxelverse studios, ahi se subiran todos los proyectos que tiene voxelverstudios, como por ejemplo: KJ REMAKE, y nuestro reciente proyecto: Fields Of The Universe.</p>
+            <h3>¡Gracias por leer!</h3>
+        </section>
+        <section class="update">
+            <h2>Actualización 1.0.1</h2>
+            <p><strong>Jun</strong></p>
+            <p>El personaje Jun es el más roto del juego y de los más bugeados. Se está buscando en los archivos del juego el bug/error para solucionarlo lo más rápido posible. Esto podría tardar unos días o semanas, depende de cuándo el dev trabaje. Por ahora, tenemos entendido que trabajará toda la semana y el domingo tendrá un descanso.</p>
+            <h3>2 cosas nuevas:</h3>
+            <ul>
+                <li>Llegarán nuevos logos y banners a los personajes y al juego en general.</li>
+                <li>Se espera que los emotes ya no sean 77 sino más, depende de cuál meme escojan y se trabaje más rápido para poder terminarlo.</li>
+            </ul>
+            <h3>Okarun (Solucionado)</h3>
+            <p>Okarun ha sido solucionado con sus bugs y errores. El personaje se encuentra 100% jugable y sin errores. Tal vez la hitbox sea un error ya que Jun, cuando te golpea, te llega a quitar la movilidad y te deja quieto. Es otra cosa que estamos arreglando.</p>
+        </section>
+        <section class="update">
+            <h2>Actualización 1.0.0</h2>
+            <p><strong>Emotes</strong></p>
+            <p>Después de estar trabajando nos acordamos de que teníamos que meter emotes y ya lo hicimos oficialmente. Ahora tenemos:</p>
+            <ul>
+                <li>77 emotes, más que los que tenía KJ Remake.</li>
+                <li>KJ Remake tenía unos 20 e incluso menos. Eso sería todo sobre los emotes.</li>
+            </ul>
+        </section>
+        <!-- Añade más secciones de actualizaciones aquí -->
+    </main>
+    <footer>
+        <p>&copy; 2024 Centrick games</p>
+        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
+        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+    </footer>
+</body>
+</html>
