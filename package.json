@@ -1,0 +1,19 @@
+{
+  "name": "my-web-page",
+  "version": "1.0.0",
+  "description": "A simple web page project.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "open src/index.html"
+  },
+  "keywords": [
+    "web",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
