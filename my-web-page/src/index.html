@@ -5,328 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voxel Verse</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles/style.css">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://cdn.discordapp.com/attachments/1321222458933772349/1329646391466659880/SPOILER_image.png?ex=679107f3&is=678fb673&hm=1fb1bd439c97b36ad8d631d6be42c7a3830809fe6f3ee3f78982325850e541d4&') no-repeat center center fixed;
-            background-size: cover;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background-color: rgba(34, 49, 63, 0.9); /* Azul oscuro */
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        nav {
-            background-color: rgba(51, 51, 51, 0.9);
-            color: white;
-            padding: 10px;
-            text-align: center;
+            background-color: #2c3e50; /* Fondo oscuro */
+            color: #ecf0f1; /* Color de texto claro */
             display: flex;
             justify-content: center;
-            gap: 20px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        nav a:hover, nav a.active {
-            background-color: #22313F; /* Azul oscuro */
-            transform: scale(1.1);
-        }
-        main {
-            flex: 1;
-            padding: 40px;
-            max-width: 1200px;
-            margin: 20px auto;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .discord-link, .game-link {
-            display: flex;
             align-items: center;
-            margin: 20px 0;
-            padding: 10px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        .discord-link:hover, .game-link:hover {
-            transform: translateY(-5px);
-        }
-        .discord-link img, .game-link img {
-            width: 30px;
-            height: 30px;
-            margin-left: 10px;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .feature {
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 100vh;
             text-align: center;
-            transition: transform 0.3s;
+            flex-direction: column;
         }
-        .feature:hover {
-            transform: translateY(-5px);
-        }
-        .videos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .video {
+        .maintenance-message {
+            font-size: 2em;
+            color: #e74c3c; /* Rojo elegante */
+            margin-bottom: 20px;
             padding: 20px;
-            background-color: white;
-            border-radius: 8px;
+            border: 2px solid #e74c3c;
+            border-radius: 10px;
+            background-color: #34495e;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s;
         }
-        .video:hover {
-            transform: translateY(-5px);
-        }
-        footer {
-            background-color: rgba(51, 51, 51, 0.9);
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-        }
-        footer a {
-            color: #4CAF50; /* Verde */
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-        .settings-bar {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100%;
-            background-color: #fff;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-            transition: right 0.3s ease;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .settings-bar.open {
-            right: 0;
-        }
-        .settings-bar h2 {
-            margin-top: 0;
-        }
-        .settings-bar label {
-            display: block;
-            margin: 10px 0;
-        }
-        .settings-bar input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        .settings-button, .close-settings-button {
-            background-color: #22313F; /* Azul oscuro */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .settings-button:hover, .close-settings-button:hover {
-            background-color: #1A242F; /* Azul más oscuro */
-        }
-        .close-settings-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-            }
-            .features, .videos {
-                grid-template-columns: 1fr;
-            }
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a la página web de Voxel Verse</h1>
-    </header>
-    <nav>
-        <a href="#roblox" onclick="setActive(this)"><i class="fas fa-gamepad"></i> Roblox</a>
-        <a href="#minecraft" onclick="setActive(this)"><i class="fas fa-cubes"></i> Minecraft</a>
-        <a href="#videos" onclick="setActive(this)"><i class="fas fa-video"></i> Videos</a>
-        <a href="contact.html" onclick="setActive(this)"><i class="fas fa-envelope"></i> Contacto</a>
-    </nav>
-    <main>
-        <p>Este es una web para Voxel Verse</p>
-        <div class="discord-link">
-            <p>Únete a nuestro Discord</p>
-            <a href="https://discord.gg/9NTknVCncT" target="_blank">
-                <img src="https://cdn.discordapp.com/attachments/1212137120941211669/1331410760844181656/discord-logo-0.png?ex=67918465&is=679032e5&hm=b526b2ea105d54ae9e25910119151fcd070dcd423c91efdf4d7aecd5de0d4902&" alt="Discord">
-            </a>
-        </div>
-        <section id="roblox">
-            <h2>Roblox</h2>
-            <p>Explora nuestra biblioteca de juegos</p>
-            <div class="game-link">
-                <p>Nuestro primer juego es <a href="https://www.roblox.com/es/games/108520288964581/Fields" target="_blank">Fields of the Universe</a></p>
-                <a href="https://www.roblox.com/es/games/108520288964581/Fields" target="_blank">
-                    <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1331333249141575774/pixelcut-export_1.jpeg?ex=67913c35&is=678feab5&hm=dc665c72bfe7f447af1414b290b9ba9b06648f3f072bfa35cab37e4b297aa30f&" alt="Fields of the Universe">
-                </a>
-            </div>
-        </section>
-        <section id="features">
-            <h2>Características Destacadas</h2>
-            <div class="features">
-                <div class="feature">
-                    <h3>Juego Multijugador</h3>
-                    <p>Disfruta de emocionantes partidas multijugador con tus amigos.</p>
-                </div>
-                <div class="feature">
-                    <h3>Actualizaciones Frecuentes</h3>
-                    <p>Recibe nuevas actualizaciones y contenido regularmente.</p>
-                </div>
-                <div class="feature">
-                    <h3>Comunidad Activa</h3>
-                    <p>Únete a una comunidad activa y participa en eventos especiales.</p>
-                </div>
-            </div>
-        </section>
-        <section id="minecraft">
-            <h2>Minecraft</h2>
-            <p>Explora nuestra biblioteca de juegos de Minecraft</p>
-            <div class="game-link">
-                <p>Próximamente</p>
-            </div>
-        </section>
-        <section id="videos">
-            <h2>Videos</h2>
-            <div class="videos">
-                <div class="video">
-                    <h3>Video 1</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/z7kq38wYGgI" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                    <h3>Video 2</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/LjWqtPdG2Pw" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                    <h3>Video 3</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/6Zm7zsGuVFI" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                    <h3>Shorts</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/xw8rG15c5ek" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer id="contact">
-        <p>&copy; 2024 Centrick games</p>
-        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
-        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
-    </footer>
-    <button class="settings-button" onclick="toggleSettings()">Configuración</button>
-    <div class="settings-bar" id="settingsBar">
-        <button class="close-settings-button" onclick="toggleSettings()">Cerrar</button>
-        <h2>Configuración</h2>
-        <label>
-            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"> Modo oscuro
-        </label>
-        <h3>Créditos</h3>
-        <p>Voxel Verse es un estudio de desarrollo de juegos que crea experiencias únicas en plataformas como Roblox y Minecraft. Nuestro objetivo es ofrecer juegos divertidos y emocionantes para todos los jugadores.</p>
-        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
-        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+    <div class="maintenance-message">
+        Mantenimiento activo. Regresa a las 11 PM del 24/01/25 en la noche, hora MX.
     </div>
-    <script src="scripts/app.js"></script>
-    <script>
-        function toggleSettings() {
-            const settingsBar = document.getElementById('settingsBar');
-            if (settingsBar.classList.contains('open')) {
-                settingsBar.classList.remove('open');
-            } else {
-                settingsBar.classList.add('open');
-            }
-        }
-
-        function toggleDarkMode() {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-        }
-
-        function setActive(element) {
-            const links = document.querySelectorAll('nav a');
-            links.forEach(link => link.classList.remove('active'));
-            element.classList.add('active');
-        }
-    </script>
-    <style>
-        .dark-mode {
-            background-color: #333;
-            color: #f4f4f4;
-        }
-        .dark-mode header {
-            background-color: #222;
-        }
-        .dark-mode nav {
-            background-color: #444;
-        }
-        .dark-mode footer {
-            background-color: #222;
-        }
-        .dark-mode .settings-button {
-            background-color: #222;
-        }
-        .dark-mode a {
-            color: #4CAF50; /* Verde */
-        }
-        .dark-mode a:hover {
-            color: #45a049; /* Verde más oscuro */
-        }
-        .dark-mode footer a {
-            color: #4CAF50; /* Verde */
-        }
-        .dark-mode footer a:hover {
-            color: #45a049; /* Verde más oscuro */
-        }
-        .dark-mode .discord-link, .dark-mode .game-link, .dark-mode .feature, .dark-mode .video, .dark-mode .updates-link {
-            background-color: #444;
-            color: #f4f4f4;
-        }
-        .dark-mode main {
-            background-color: rgba(51, 51, 51, 0.9);
-        }
-        .dark-mode .settings-bar {
-            background-color: #444;
-            color: #f4f4f4;
-        }
-    </style>
+    <img class="logo" src="https://cdn.discordapp.com/attachments/1238308863476891709/1332202320611639418/2344557.png?ex=67946598&is=67931418&hm=bdba89a57cff5140dcc95dbc62e042ccf0ffdbb6b224fc587c09eae41749787f&" alt="Voxel Verse Logo">
 </body>
 </html>
