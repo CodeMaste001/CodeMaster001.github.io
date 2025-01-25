@@ -5,41 +5,397 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voxel Verse</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/style.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #2c3e50; /* Fondo oscuro */
-            color: #ecf0f1; /* Color de texto claro */
+            background: url('https://cdn.discordapp.com/attachments/1321222458933772349/1329646391466659880/SPOILER_image.png?ex=679107f3&is=678fb673&hm=1fb1bd439c97b36ad8d631d6be42c7a3830809fe6f3ee3f78982325850e541d4&') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
             flex-direction: column;
+            min-height: 100vh;
         }
-        .maintenance-message {
-            font-size: 2em;
-            color: #e74c3c; /* Rojo elegante */
-            margin-bottom: 20px;
+        header {
+            background-color: rgba(34, 49, 63, 0.9); /* Azul oscuro */
+            color: white;
             padding: 20px;
-            border: 2px solid #e74c3c;
-            border-radius: 10px;
-            background-color: #34495e;
+            text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .logo {
-            width: 200px;
-            height: auto;
-            margin-top: 20px;
+        nav {
+            background-color: rgba(51, 51, 51, 0.9);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-family: 'Roboto', sans-serif;
+        }
+        nav a:hover, nav a.active {
+            background-color: #22313F; /* Azul oscuro */
+            transform: scale(1.1);
+        }
+        main {
+            flex: 1;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            font-family: 'Roboto', sans-serif;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        .section img {
+            max-width: 20%; /* Imagen más pequeña, del tamaño del texto */
+            border-radius: 8px;
+        }
+        .discord-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .discord-link:hover {
+            transform: translateY(-5px);
+        }
+        .discord-link img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+        }
+        footer {
+            background-color: rgba(51, 51, 51, 0.9);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer a {
+            color: #4CAF50; /* Verde */
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .settings-bar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .settings-bar.open {
+            right: 0;
+        }
+        .settings-bar h2 {
+            margin-top: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        .settings-bar label {
+            display: block;
+            margin: 10px 0;
+        }
+        .settings-bar input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .settings-button, .close-settings-button {
+            background-color: #22313F; /* Azul oscuro */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .settings-button:hover, .close-settings-button:hover {
+            background-color: #1A242F; /* Azul más oscuro */
+        }
+        .close-settings-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            .section {
+                margin-bottom: 20px;
+            }
+        }
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .card h3 {
+            margin: 10px 0;
+            font-size: 1.5em;
+        }
+        .card p {
+            text-align: center;
+            font-size: 1em;
+            color: #666;
+        }
+        .card a {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .card a:hover {
+            background-color: #45a049;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
+        }
+        .dark-mode header {
+            background-color: #222;
+        }
+        .dark-mode nav {
+            background-color: #444;
+        }
+        .dark-mode footer {
+            background-color: #222;
+        }
+        .dark-mode .settings-button {
+            background-color: #222;
+        }
+        .dark-mode a {
+            color: #4CAF50; /* Verde */
+        }
+        .dark-mode a:hover {
+            color: #45a049; /* Verde más oscuro */
+        }
+        .dark-mode footer a {
+            color: #4CAF50; /* Verde */
+        }
+        .dark-mode footer a:hover {
+            color: #45a049; /* Verde más oscuro */
+        }
+        .dark-mode .section {
+            background-color: #444;
+            color: #f4f4f4;
+        }
+        .dark-mode main {
+            background-color: rgba(51, 51, 51, 0.9);
+        }
+        .dark-mode .settings-bar {
+            background-color: #444;
+            color: #f4f4f4;
         }
     </style>
 </head>
 <body>
-    <div class="maintenance-message">
-        Mantenimiento activo. Regresa a las 11 PM del 24/01/25 en la noche, hora MX.
+    <header>
+        <h1>¡Regresamos del mantenimiento!</h1>
+        <h1>Voxel Verse Oficial</h1>
+    </header>
+    <nav>
+        <a href="#roblox" onclick="setActive(this)"><i class="fas fa-gamepad"></i> Roblox</a>
+        <a href="#minecraft" onclick="setActive(this)"><i class="fas fa-cubes"></i> Minecraft</a>
+        <a href="#videos" onclick="setActive(this)"><i class="fas fa-video"></i> Videos</a>
+        <a href="contact.html" onclick="setActive(this)"><i class="fas fa-envelope"></i> Contacto</a>
+    </nav>
+    <main>
+        <section id="roblox" class="section">
+            <h2>Roblox</h2>
+            <p>Explora nuestra biblioteca de juegos</p>
+            <div class="game-link">
+                <div class="card">
+                    <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1332580948599898122/1024px-Roblox_Studio_logo_-_2022.png?ex=6795c638&is=679474b8&hm=efe79b34be1caa503bb590ad97abe467700c910d24770b6dfc4b232f1a42e3e6&" alt="Roblox Icon">
+                    <h3>Fields of the Universe</h3>
+                    <p>Nuestro primer juego es <a href="https://www.roblox.com/es/games/108520288964581/Fields" target="_blank">Fields of the Universe</a></p>
+                </div>
+            </div>
+        </section>
+        <section id="minecraft" class="section">
+            <h2>Minecraft</h2>
+            <p>Explora nuestra biblioteca de juegos de Minecraft</p>
+            <div class="game-link">
+                <div class="card">
+                    <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1332578573390843976/image-removebg-preview.png?ex=6795c402&is=67947282&hm=5772322b99ad89cec688503dcd40b0ee969e5a2e21e81366a3762f9c2bf90f58&" alt="Minecraft Icon">
+                    <h3>Próximamente</h3>
+                    <p>Estamos trabajando en nuevos y emocionantes juegos de Minecraft. ¡Mantente atento para más actualizaciones!</p>
+                </div>
+            </div>
+        </section>
+        <section id="videos" class="section">
+            <div class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="Videos Icon">
+                <h3>Nuestra biblioteca de videos</h3>
+                <div class="video">
+                    <iframe id="videoFrame" width="100%" height="400" src="https://www.youtube.com/embed/LjWqtPdG2Pw" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div id="timer" style="text-align: center; margin-top: 10px; font-size: 1.2em;"></div>
+            </div>
+        </section>
+        <section id="updates" class="section">
+            <div class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="Updates Icon">
+                <h3>Actualizaciones</h3>
+                <p>Revisa las correcciones de errores y actualizaciones de nuestros juegos.</p>
+                <a href="updates.html">Ver más</a>
+            </div>
+        </section>
+        <section id="discord" class="section">
+            <div class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon">
+                <h3>Únete a nuestro Discord</h3>
+                <p>Únete a nuestra comunidad en Discord para estar al tanto de las últimas noticias y actualizaciones.</p>
+                <a href="https://discord.gg/9NTknVCncT" target="_blank">Únete ahora</a>
+            </div>
+        </section>
+    </main>
+    <footer id="contact">
+        <p>&copy; 2024 Centrick games</p>
+        <p>Programador principal: Alex</p>
+        <p>Programador 2 y editor de web: Axel</p>
+        <p>Ideas: Rogsc</p>
+        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+    </footer>
+    <button class="settings-button" onclick="toggleSettings()">Configuración</button>
+    <div class="settings-bar" id="settingsBar">
+        <button class="close-settings-button" onclick="toggleSettings()">Cerrar</button>
+        <h2>Configuración</h2>
+        <label>
+            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"> Modo oscuro
+        </label>
+        <label for="colorSelect">Selecciona un color de fondo:</label>
+        <select id="colorSelect" onchange="changeBackgroundColor()">
+            <option value="purple">Morado</option>
+            <option value="blue">Azul</option>
+            <option value="green">Verde</option>
+            <option value="black">Negro</option>
+        </select>
+        <div style="margin-top: 20px;">
+            <h2>¡Bienvenido a Voxel Verse!</h2>
+            <p>La página oficial de <em>Voxel Verse</em>, un mundo donde la imaginación se convierte en bloques.</p>
+            <p>Explora nuestras últimas novedades, comparte tus creaciones y descubre un universo lleno de posibilidades. Desde noticias y actualizaciones hasta consejos y trucos, todo lo que necesitas para llevar tu experiencia voxel al siguiente nivel está aquí.</p>
+            <h3>¿Qué encontrarás aquí?</h3>
+            <ul>
+                <li>Noticias oficiales y anuncios.</li>
+                <li>Descargas y recursos exclusivos.</li>
+                <li>Comunidad y eventos especiales.</li>
+            </ul>
+            <p>¡Sumérgete en Voxel Verse y construyamos juntos algo increíble!</p>
+        </div>
     </div>
-    <img class="logo" src="https://cdn.discordapp.com/attachments/1238308863476891709/1332202320611639418/2344557.png?ex=67946598&is=67931418&hm=bdba89a57cff5140dcc95dbc62e042ccf0ffdbb6b224fc587c09eae41749787f&" alt="Voxel Verse Logo">
+    <script src="scripts/app.js"></script>
+    <script>
+        function toggleSettings() {
+            const settingsBar = document.getElementById('settingsBar');
+            if (settingsBar.classList.contains('open')) {
+                settingsBar.classList.remove('open');
+            } else {
+                settingsBar.classList.add('open');
+            }
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+
+        function setActive(element) {
+            const links = document.querySelectorAll('nav a');
+            links.forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function changeBackgroundColor() {
+            const colorSelect = document.getElementById('colorSelect');
+            const selectedColor = colorSelect.value;
+            document.body.style.backgroundColor = selectedColor;
+        }
+
+        const videoUrls = [
+            "https://www.youtube.com/embed/LjWqtPdG2Pw",
+            "https://www.youtube.com/embed/z7kq38wYGgI",
+            "https://www.youtube.com/embed/RotRsovG0e4",
+            "https://www.youtube.com/embed/6Zm7zsGuVFI",
+            "https://www.youtube.com/embed/OGE2x9ROirQ",
+            "https://www.youtube.com/embed/GqqYKH-FvNA",
+            "https://www.youtube.com/embed/s9tzxYQ92-0"
+        ];
+
+        let currentVideoIndex = 0;
+        let timeLeft = 300; // 5 minutes in seconds
+
+        function changeVideo() {
+            const videoFrame = document.getElementById('videoFrame');
+            videoFrame.src = videoUrls[currentVideoIndex];
+            currentVideoIndex = Math.floor(Math.random() * videoUrls.length); // Random video
+            timeLeft = 300; // Reset timer
+        }
+
+        function updateTimer() {
+            const timerElement = document.getElementById('timer');
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Video aleatorio en: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                changeVideo();
+            }
+        }
+
+        setInterval(updateTimer, 1000); // Update timer every second
+        setInterval(changeVideo, 300000); // Change video every 5 minutes (300000 ms)
+    </script>
 </body>
 </html>
