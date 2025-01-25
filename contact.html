@@ -1,143 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Voxel Verse</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles/style.css">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
+        /* Reseteamos los márgenes y paddings */
+        * {
             margin: 0;
             padding: 0;
-            background: url('https://cdn.discordapp.com/attachments/1267235274518302860/1331755101177516113/pexels-alex-andrews-271121-3805983.jpg?ex=6792c516&is=67917396&hm=f37e7f22dbc557a261e6dff41474a8d5d784c437040edbba49dfa9c2204f0a60&') no-repeat center center fixed;
+            box-sizing: border-box;
+        }
+        
+        /* Fondo de la página */
+        body {
+            background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGN5OWR6Z2t4a3BlY2pkODJ2aTdidjNqNGptczNqMmI3dXlsdzVrYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6ZtlUKrHHPKrQgSs/giphy.gif');
             background-size: cover;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-position: center;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
         }
+
+        /* Estilo del header */
         header {
-            background-color: rgba(34, 49, 63, 0.9); /* Azul oscuro */
-            color: white;
-            padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro translúcido */
+            margin-bottom: 20px;
         }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-top: 10px;
+        }
+
+        /* Estilo de la navegación */
         nav {
-            background-color: rgba(51, 51, 51, 0.9);
-            color: white;
-            padding: 10px;
-            text-align: center;
             display: flex;
             justify-content: center;
             gap: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
         }
+        
         nav a {
-            color: white;
+            color: #fff;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
-        nav a:hover, nav a.active {
-            background-color: #22313F; /* Azul oscuro */
-            transform: scale(1.1);
+        
+        nav a:hover {
+            color: #00c8ff;
         }
+        
+        nav .active {
+            color: #00c8ff;
+        }
+
+        /* Estilo del formulario */
         main {
-            flex: 1;
-            padding: 40px;
-            max-width: 1200px;
-            margin: 20px auto;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .contact-form label {
-            font-weight: bold;
-        }
-        .contact-form input, .contact-form textarea {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-        .contact-form input[readonly] {
-            background-color: #f4f4f4;
-            cursor: not-allowed;
-        }
-        .contact-form button {
-            background-color: #22313F; /* Azul oscuro */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .contact-form button:hover {
-            background-color: #1A242F; /* Azul más oscuro */
-        }
-        footer {
-            background-color: rgba(51, 51, 51, 0.9);
-            color: white;
+            padding: 20px;
             text-align: center;
-            padding: 20px 0;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
         }
-        footer a {
-            color: #4CAF50; /* Verde */
-            text-decoration: none;
+        
+        main h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
-        footer a:hover {
-            text-decoration: underline;
+
+        main p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
         }
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-            }
+
+        .contact-form {
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo translúcido */
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form label {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            background-color: #00c8ff;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #009ac3;
+        }
+
+        /* Estilo del footer */
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: 20px;
+        }
+
+        footer p {
+            color: #fff;
+            font-size: 1rem;
         }
     </style>
+    <script>
+        function sendEmail() {
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            const email = 'centrickgamesstudios@gmail.com'; // Correo fijo
+            const subject = `Nuevo mensaje de ${name}`;
+
+            // Crea un enlace de mailto con el asunto, correo y mensaje predefinido
+            const mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+            window.open(mailtoLink, '_blank');
+        }
+    </script>
 </head>
 <body>
     <header>
+        <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1332753497938067466/Google_Contacts_logo.png?ex=679666eb&is=6795156b&hm=cf7447d510b77d42691bae6102ee34395d389de400fcdc4ccd92ca656ab1afb3&" alt="Logo de Contacto" width="150">
         <h1>Contacto - Voxel Verse</h1>
     </header>
+    
     <nav>
         <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
         <a href="updates.html"><i class="fas fa-bug"></i> Actualizaciones</a>
         <a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contacto</a>
     </nav>
+    
     <main>
         <h2>Ponte en contacto con nosotros</h2>
         <p>Si tienes alguna pregunta, comentario o sugerencia, no dudes en ponerte en contacto con nosotros a través del siguiente formulario:</p>
-        <form class="contact-form" action="mailto:centrickgamesstudios@gmail.com" method="post" enctype="text/plain">
+        <div class="contact-form">
             <label for="name">Nombre:</label>
             <input type="text" id="name" name="name" required>
             
             <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" value="centrickgamesstudios@gmail.com" readonly>
+            <input type="email" id="email" name="email" value="centrickgamesstudios@gmail.com" readonly required>
             
             <label for="message">Mensaje:</label>
             <textarea id="message" name="message" rows="5" required></textarea>
             
-            <button type="submit">Enviar</button>
-        </form>
+            <button type="button" onclick="sendEmail()">Enviar</button>
+        </div>
     </main>
+    
     <footer>
-        <p>&copy; 2024 Centrick games</p>
-        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
-        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+        <p>&copy; 2024 Centrick Games</p>
     </footer>
 </body>
 </html>
