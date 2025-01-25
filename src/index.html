@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles/style.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -32,7 +33,7 @@
             padding: 10px;
             text-align: center;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             gap: 20px;
         }
         nav a {
@@ -41,6 +42,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
+            font-family: 'Roboto', sans-serif;
         }
         nav a:hover, nav a.active {
             background-color: #22313F; /* Azul oscuro */
@@ -58,9 +60,25 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .discord-link, .game-link {
+        .section {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            font-family: 'Roboto', sans-serif;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        .section img {
+            max-width: 20%; /* Imagen más pequeña, del tamaño del texto */
+            border-radius: 8px;
+        }
+        .discord-link {
             display: flex;
             align-items: center;
+            justify-content: center;
             margin: 20px 0;
             padding: 10px;
             background-color: white;
@@ -68,45 +86,13 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
         }
-        .discord-link:hover, .game-link:hover {
+        .discord-link:hover {
             transform: translateY(-5px);
         }
-        .discord-link img, .game-link img {
+        .discord-link img {
             width: 30px;
             height: 30px;
             margin-left: 10px;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .feature {
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .feature:hover {
-            transform: translateY(-5px);
-        }
-        .videos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .video {
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .video:hover {
-            transform: translateY(-5px);
         }
         footer {
             background-color: rgba(51, 51, 51, 0.9);
@@ -139,6 +125,7 @@
         }
         .settings-bar h2 {
             margin-top: 0;
+            font-family: 'Roboto', sans-serif;
         }
         .settings-bar label {
             display: block;
@@ -168,126 +155,49 @@
             nav {
                 flex-direction: column;
             }
-            .features, .videos {
-                grid-template-columns: 1fr;
+            .section {
+                margin-bottom: 20px;
             }
         }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Bienvenido a la página web de Voxel Verse</h1>
-    </header>
-    <nav>
-        <a href="#roblox" onclick="setActive(this)"><i class="fas fa-gamepad"></i> Roblox</a>
-        <a href="#minecraft" onclick="setActive(this)"><i class="fas fa-cubes"></i> Minecraft</a>
-        <a href="#videos" onclick="setActive(this)"><i class="fas fa-video"></i> Videos</a>
-        <a href="contact.html" onclick="setActive(this)"><i class="fas fa-envelope"></i> Contacto</a>
-    </nav>
-    <main>
-        <p>Este es una web para Voxel Verse</p>
-        <div class="discord-link">
-            <p>Únete a nuestro Discord</p>
-            <a href="https://discord.gg/9NTknVCncT" target="_blank">
-                <img src="https://cdn.discordapp.com/attachments/1212137120941211669/1331410760844181656/discord-logo-0.png?ex=67918465&is=679032e5&hm=b526b2ea105d54ae9e25910119151fcd070dcd423c91efdf4d7aecd5de0d4902&" alt="Discord">
-            </a>
-        </div>
-        <section id="roblox">
-            <h2>Roblox</h2>
-            <p>Explora nuestra biblioteca de juegos</p>
-            <div class="game-link">
-                <p>Nuestro primer juego es <a href="https://www.roblox.com/es/games/108520288964581/Fields" target="_blank">Fields of the Universe</a></p>
-                <a href="https://www.roblox.com/es/games/108520288964581/Fields" target="_blank">
-                    <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1331333249141575774/pixelcut-export_1.jpeg?ex=67913c35&is=678feab5&hm=dc665c72bfe7f447af1414b290b9ba9b06648f3f072bfa35cab37e4b297aa30f&" alt="Fields of the Universe">
-                </a>
-            </div>
-        </section>
-        <section id="features">
-            <h2>Características Destacadas</h2>
-            <div class="features">
-                <div class="feature">
-                    <h3>Juego Multijugador</h3>
-                    <p>Disfruta de emocionantes partidas multijugador con tus amigos.</p>
-                </div>
-                <div class="feature">
-                    <h3>Actualizaciones Frecuentes</h3>
-                    <p>Recibe nuevas actualizaciones y contenido regularmente.</p>
-                </div>
-                <div class="feature">
-                    <h3>Comunidad Activa</h3>
-                    <p>Únete a una comunidad activa y participa en eventos especiales.</p>
-                </div>
-            </div>
-        </section>
-        <section id="minecraft">
-            <h2>Minecraft</h2>
-            <p>Explora nuestra biblioteca de juegos de Minecraft</p>
-            <div class="game-link">
-                <p>Próximamente</p>
-            </div>
-        </section>
-        <section id="videos">
-            <h2>Videos</h2>
-            <div class="videos">
-                <div class="video">
-                    <h3>Video 1</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/z7kq38wYGgI" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                    <h3>Video 2</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/LjWqtPdG2Pw" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                    <h3>Video 3</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/6Zm7zsGuVFI" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                    <h3>Shorts</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/xw8rG15c5ek" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer id="contact">
-        <p>&copy; 2024 Centrick games</p>
-        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
-        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
-    </footer>
-    <button class="settings-button" onclick="toggleSettings()">Configuración</button>
-    <div class="settings-bar" id="settingsBar">
-        <button class="close-settings-button" onclick="toggleSettings()">Cerrar</button>
-        <h2>Configuración</h2>
-        <label>
-            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"> Modo oscuro
-        </label>
-        <h3>Créditos</h3>
-        <p>Voxel Verse es un estudio de desarrollo de juegos que crea experiencias únicas en plataformas como Roblox y Minecraft. Nuestro objetivo es ofrecer juegos divertidos y emocionantes para todos los jugadores.</p>
-        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
-        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
-    </div>
-    <script src="scripts/app.js"></script>
-    <script>
-        function toggleSettings() {
-            const settingsBar = document.getElementById('settingsBar');
-            if (settingsBar.classList.contains('open')) {
-                settingsBar.classList.remove('open');
-            } else {
-                settingsBar.classList.add('open');
-            }
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
-
-        function toggleDarkMode() {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
+        .card:hover {
+            transform: translateY(-5px);
         }
-
-        function setActive(element) {
-            const links = document.querySelectorAll('nav a');
-            links.forEach(link => link.classList.remove('active'));
-            element.classList.add('active');
+        .card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
         }
-    </script>
-    <style>
+        .card h3 {
+            margin: 10px 0;
+            font-size: 1.5em;
+        }
+        .card p {
+            text-align: center;
+            font-size: 1em;
+            color: #666;
+        }
+        .card a {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .card a:hover {
+            background-color: #45a049;
+        }
         .dark-mode {
             background-color: #333;
             color: #f4f4f4;
@@ -316,7 +226,7 @@
         .dark-mode footer a:hover {
             color: #45a049; /* Verde más oscuro */
         }
-        .dark-mode .discord-link, .dark-mode .game-link, .dark-mode .feature, .dark-mode .video, .dark-mode .updates-link {
+        .dark-mode .section {
             background-color: #444;
             color: #f4f4f4;
         }
@@ -328,5 +238,164 @@
             color: #f4f4f4;
         }
     </style>
+</head>
+<body>
+    <header>
+        <h1>¡Regresamos del mantenimiento!</h1>
+        <h1>Voxel Verse Oficial</h1>
+    </header>
+    <nav>
+        <a href="#roblox" onclick="setActive(this)"><i class="fas fa-gamepad"></i> Roblox</a>
+        <a href="#minecraft" onclick="setActive(this)"><i class="fas fa-cubes"></i> Minecraft</a>
+        <a href="#videos" onclick="setActive(this)"><i class="fas fa-video"></i> Videos</a>
+        <a href="contact.html" onclick="setActive(this)"><i class="fas fa-envelope"></i> Contacto</a>
+    </nav>
+    <main>
+        <section id="roblox" class="section">
+            <h2>Roblox</h2>
+            <p>Explora nuestra biblioteca de juegos</p>
+            <div class="game-link">
+                <div class="card">
+                    <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1332580948599898122/1024px-Roblox_Studio_logo_-_2022.png?ex=6795c638&is=679474b8&hm=efe79b34be1caa503bb590ad97abe467700c910d24770b6dfc4b232f1a42e3e6&" alt="Roblox Icon">
+                    <h3>Fields of the Universe</h3>
+                    <p>Nuestro primer juego es <a href="https://www.roblox.com/es/games/108520288964581/Fields" target="_blank">Fields of the Universe</a></p>
+                </div>
+            </div>
+        </section>
+        <section id="minecraft" class="section">
+            <h2>Minecraft</h2>
+            <p>Explora nuestra biblioteca de juegos de Minecraft</p>
+            <div class="game-link">
+                <div class="card">
+                    <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1332578573390843976/image-removebg-preview.png?ex=6795c402&is=67947282&hm=5772322b99ad89cec688503dcd40b0ee969e5a2e21e81366a3762f9c2bf90f58&" alt="Minecraft Icon">
+                    <h3>Próximamente</h3>
+                    <p>Estamos trabajando en nuevos y emocionantes juegos de Minecraft. ¡Mantente atento para más actualizaciones!</p>
+                </div>
+            </div>
+        </section>
+        <section id="videos" class="section">
+            <div class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="Videos Icon">
+                <h3>Nuestra biblioteca de videos</h3>
+                <div class="video">
+                    <iframe id="videoFrame" width="100%" height="400" src="https://www.youtube.com/embed/LjWqtPdG2Pw" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div id="timer" style="text-align: center; margin-top: 10px; font-size: 1.2em;"></div>
+            </div>
+        </section>
+        <section id="updates" class="section">
+            <div class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="Updates Icon">
+                <h3>Actualizaciones</h3>
+                <p>Revisa las correcciones de errores y actualizaciones de nuestros juegos.</p>
+                <a href="updates.html">Ver más</a>
+            </div>
+        </section>
+        <section id="discord" class="section">
+            <div class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon">
+                <h3>Únete a nuestro Discord</h3>
+                <p>Únete a nuestra comunidad en Discord para estar al tanto de las últimas noticias y actualizaciones.</p>
+                <a href="https://discord.gg/9NTknVCncT" target="_blank">Únete ahora</a>
+            </div>
+        </section>
+    </main>
+    <footer id="contact">
+        <p>&copy; 2024 Centrick games</p>
+        <p>Programador principal: Alex</p>
+        <p>Programador 2 y editor de web: Axel</p>
+        <p>Ideas: Rogsc</p>
+        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+    </footer>
+    <button class="settings-button" onclick="toggleSettings()">Configuración</button>
+    <div class="settings-bar" id="settingsBar">
+        <button class="close-settings-button" onclick="toggleSettings()">Cerrar</button>
+        <h2>Configuración</h2>
+        <label>
+            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"> Modo oscuro
+        </label>
+        <label for="colorSelect">Selecciona un color de fondo:</label>
+        <select id="colorSelect" onchange="changeBackgroundColor()">
+            <option value="purple">Morado</option>
+            <option value="blue">Azul</option>
+            <option value="green">Verde</option>
+            <option value="black">Negro</option>
+        </select>
+        <div style="margin-top: 20px;">
+            <h2>¡Bienvenido a Voxel Verse!</h2>
+            <p>La página oficial de <em>Voxel Verse</em>, un mundo donde la imaginación se convierte en bloques.</p>
+            <p>Explora nuestras últimas novedades, comparte tus creaciones y descubre un universo lleno de posibilidades. Desde noticias y actualizaciones hasta consejos y trucos, todo lo que necesitas para llevar tu experiencia voxel al siguiente nivel está aquí.</p>
+            <h3>¿Qué encontrarás aquí?</h3>
+            <ul>
+                <li>Noticias oficiales y anuncios.</li>
+                <li>Descargas y recursos exclusivos.</li>
+                <li>Comunidad y eventos especiales.</li>
+            </ul>
+            <p>¡Sumérgete en Voxel Verse y construyamos juntos algo increíble!</p>
+        </div>
+    </div>
+    <script src="scripts/app.js"></script>
+    <script>
+        function toggleSettings() {
+            const settingsBar = document.getElementById('settingsBar');
+            if (settingsBar.classList.contains('open')) {
+                settingsBar.classList.remove('open');
+            } else {
+                settingsBar.classList.add('open');
+            }
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+
+        function setActive(element) {
+            const links = document.querySelectorAll('nav a');
+            links.forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function changeBackgroundColor() {
+            const colorSelect = document.getElementById('colorSelect');
+            const selectedColor = colorSelect.value;
+            document.body.style.backgroundColor = selectedColor;
+        }
+
+        const videoUrls = [
+            "https://www.youtube.com/embed/LjWqtPdG2Pw",
+            "https://www.youtube.com/embed/z7kq38wYGgI",
+            "https://www.youtube.com/embed/RotRsovG0e4",
+            "https://www.youtube.com/embed/6Zm7zsGuVFI",
+            "https://www.youtube.com/embed/OGE2x9ROirQ",
+            "https://www.youtube.com/embed/GqqYKH-FvNA",
+            "https://www.youtube.com/embed/s9tzxYQ92-0"
+        ];
+
+        let currentVideoIndex = 0;
+        let timeLeft = 300; // 5 minutes in seconds
+
+        function changeVideo() {
+            const videoFrame = document.getElementById('videoFrame');
+            videoFrame.src = videoUrls[currentVideoIndex];
+            currentVideoIndex = Math.floor(Math.random() * videoUrls.length); // Random video
+            timeLeft = 300; // Reset timer
+        }
+
+        function updateTimer() {
+            const timerElement = document.getElementById('timer');
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Video aleatorio en: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                changeVideo();
+            }
+        }
+
+        setInterval(updateTimer, 1000); // Update timer every second
+        setInterval(changeVideo, 300000); // Change video every 5 minutes (300000 ms)
+    </script>
 </body>
 </html>
