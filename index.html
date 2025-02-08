@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxel Verse Studio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Voxel Verse Studio</h1>
+        <nav>
+            <ul>
+                <li><a href="#contact">Contacto</a></li>
+                <li><a href="#admin">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="contact">
+        <h2>Contacto</h2>
+        <form>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+    
+    <section id="admin">
+        <h2>Panel de Administración</h2>
+        <div id="login-form">
+            <label for="admin-email">Correo:</label>
+            <input type="email" id="admin-email" required>
+            
+            <label for="admin-password">Contraseña:</label>
+            <input type="password" id="admin-password" required>
+            
+            <button onclick="loginAdmin()">Ingresar</button>
+            <p id="login-error" style="color: red; display: none;">Correo o contraseña incorrectos</p>
+        </div>
+        <div id="admin-panel" style="display: none;">
+            <h3>Bienvenido, Administrador</h3>
+            <p>Aquí puedes gestionar la web.</p>
+            <button onclick="logoutAdmin()">Cerrar Sesión</button>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Voxel Verse Studio - Desarrollado por AlexDev</p>
+    </footer>
+    
+    <script>
+        const adminEmail = "centrickgamesstudios@gmail.com";
+        const adminPassword = "Centrickelmejorstudio001";
+
+        function loginAdmin() {
+            const email = document.getElementById("admin-email").value;
+            const password = document.getElementById("admin-password").value;
+            
+            if (email === adminEmail && password === adminPassword) {
+                document.getElementById("login-form").style.display = "none";
+                document.getElementById("admin-panel").style.display = "block";
+            } else {
+                document.getElementById("login-error").style.display = "block";
+            }
+        }
+        
+        function logoutAdmin() {
+            document.getElementById("admin-panel").style.display = "none";
+            document.getElementById("login-form").style.display = "block";
+        }
+    </script>
+</body>
+</html>
