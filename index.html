@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
+        /* Estilos generales */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -62,36 +63,6 @@
         footer a:hover {
             color: #3498db;
         }
-        .categories {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-            gap: 30px;
-        }
-        .category {
-            background-color: #ecf0f1;
-            border-radius: 10px;
-            padding: 20px;
-            width: 250px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .category:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .category h3 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-        .category p {
-            margin-top: 10px;
-            font-size: 1.1em;
-        }
-        .video iframe {
-            border-radius: 10px;
-            margin-top: 20px;
-        }
         .admin-panel {
             display: none;
             position: fixed;
@@ -129,6 +100,43 @@
         }
         .admin-panel button:hover {
             background-color: #2980b9;
+        }
+
+        .admin-console {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #2c3e50;
+            border-radius: 5px;
+            color: white;
+            width: 400px;
+            height: 300px;
+            overflow-y: auto;
+        }
+        .admin-console input {
+            width: 100%;
+            padding: 10px;
+            background-color: #34495e;
+            color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .admin-console .output {
+            margin-top: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.9em;
+            color: #ecf0f1;
+        }
+
+        .admin-console button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -199,6 +207,14 @@
         </div>
     </div>
 
+    <!-- Admin Console -->
+    <div class="admin-console" id="adminConsole" style="display: none;">
+        <h3>Consola de Administrador</h3>
+        <input type="text" id="commandInput" placeholder="Escribe un comando" />
+        <button onclick="executeCommand()">Ejecutar</button>
+        <div class="output" id="consoleOutput"></div>
+    </div>
+
     <script>
         function toggleAdminPanel() {
             const panel = document.getElementById('adminPanel');
@@ -214,20 +230,55 @@
             if (username === correctUsername && password === correctPassword) {
                 alert('¡Bienvenido, Admin!');
                 toggleAdminPanel();
+                document.getElementById('adminConsole').style.display = 'block'; // Mostrar la consola
             } else {
                 document.getElementById('loginMessage').style.display = 'block';
             }
         }
 
-        function setActive(link) {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => section.style.display = 'none');
-            const targetSection = document.querySelector(link.getAttribute('href'));
-            targetSection.style.display = 'block';
+        function executeCommand() {
+            const command = document.getElementById('commandInput').value;
+            const outputDiv = document.getElementById('consoleOutput');
+            
+            if (command.startsWith('/say ')) {
+                const message = command.substring(5);
+                sendAnnouncement(message);
+                outputDiv.textContent = 'Comando ejecutado: ' + command;
+            } else if (command === '/darkmode') {
+                toggleDarkMode();
+                outputDiv.textContent = 'Modo oscuro activado.';
+            } else if (command === '/showstats') {
+                showStats();
+                outputDiv.textContent = 'Estadísticas mostradas.';
+            } else {
+                outputDiv.textContent = 'Comando no reconocido.';
+            }
         }
 
-        // Mostrar Steam Workshop al inicio
-        setActive(document.querySelector('nav a'));
+        function sendAnnouncement(message) {
+            const announcementElement = document.createElement('div');
+            announcementElement.textContent = message;
+            announcementElement.style.backgroundColor = "#f39c12";
+            announcementElement.style.color = "white";
+            announcementElement.style.padding = "10px";
+            announcementElement.style.textAlign = "center";
+            announcementElement.style.position = "fixed";
+            announcementElement.style.top = "0";
+            announcementElement.style.width = "100%";
+            document.body.appendChild(announcementElement);
+
+            setTimeout(() => {
+                announcementElement.remove();
+            }, 5000);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function showStats() {
+            alert("Visitas de la web: 5000\nUsuarios activos: 200");
+        }
     </script>
 </body>
 </html>
