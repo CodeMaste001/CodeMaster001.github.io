@@ -1,0 +1,19 @@
+function setActive(link) {
+    const links = document.querySelectorAll('nav a');
+    links.forEach((el) => el.classList.remove('active'));
+    link.classList.add('active');
+}
+
+function toggleSettings() {
+    const settingsBar = document.getElementById('settingsBar');
+    settingsBar.style.display = (settingsBar.style.display === 'block') ? 'none' : 'block';
+}
+
+function toggleDarkMode() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle.checked) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
