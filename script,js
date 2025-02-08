@@ -1,19 +1,20 @@
-function setActive(link) {
-    const links = document.querySelectorAll('nav a');
-    links.forEach((el) => el.classList.remove('active'));
-    link.classList.add('active');
+// script.js
+
+// Activar y desactivar el panel de administración
+function toggleAdminPanel() {
+    const adminPanel = document.getElementById('adminPanel');
+    adminPanel.style.display = adminPanel.style.display === 'flex' ? 'none' : 'flex';
 }
 
-function toggleSettings() {
-    const settingsBar = document.getElementById('settingsBar');
-    settingsBar.style.display = (settingsBar.style.display === 'block') ? 'none' : 'block';
-}
-
+// Cambiar entre modo oscuro y modo claro
 function toggleDarkMode() {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    if (darkModeToggle.checked) {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+}
+
+// Hacer que el enlace activo se resalte en el menú
+function setActive(element) {
+    const links = document.querySelectorAll('nav a');
+    links.forEach(link => link.classList.remove('active'));
+    element.classList.add('active');
 }
