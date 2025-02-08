@@ -7,40 +7,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        /* Estilos generales */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #111;
             color: #ddd;
+            text-align: center;
         }
         header {
             background-color: #3498db;
             padding: 20px;
-            text-align: center;
             color: white;
         }
-        nav {
-            text-align: center;
-            margin-top: 20px;
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            margin: 10px 0;
+            font-size: 1.2em;
         }
         nav a {
+            display: inline-block;
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 12px 20px;
+            font-size: 1.1em;
             font-weight: bold;
             border-radius: 5px;
-            margin: 0 15px;
+            margin: 8px;
+            background-color: #2980b9;
             transition: background-color 0.3s;
         }
         nav a:hover {
-            background-color: #2980b9;
+            background-color: #1c6ea4;
         }
-        .admin-panel, .admin-console {
+        .admin-console, .login-panel {
             display: none;
             position: fixed;
             top: 0;
@@ -50,30 +53,40 @@
             background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
-            color: white;
         }
-        .panel-content, .console-content {
+        .console-content, .login-content {
             background-color: #222;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            color: white;
         }
-        .admin-console {
-            background-color: black;
-            font-family: monospace;
-            color: #0f0;
-            padding: 20px;
-            border-radius: 5px;
-            width: 500px;
-            height: 300px;
-            overflow-y: auto;
-        }
-        .admin-console input {
+        .console-content input, .login-content input {
             width: 100%;
-            padding: 10px;
-            background-color: black;
-            color: #0f0;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #333;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .console-content input:focus, .login-content input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
             border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
@@ -81,53 +94,78 @@
     <header>
         <h1>Voxel Verse 🚀</h1>
         <p>Creando mundos para ti 🌍</p>
+        <button onclick="toggleLoginPanel()">🔑 Iniciar sesión</button>
         <nav>
-            <a href="#steam-workshop">🎮 Steam Workshop</a>
-            <a href="#roblox">🔵 Roblox</a>
-            <a href="#proximamente">⏳ Próximamente</a>
-            <button onclick="toggleAdminPanel()">🛠 Admin</button>
+            <a href="#" onclick="alert('No tenemos mods por ahora')">🎮 Steam Workshop</a>
+            <a href="#" onclick="alert('No disponible por ahora')">🔵 Roblox</a>
+            <a href="404.html">⏳ Próximamente</a>
         </nav>
     </header>
 
-    <div class="admin-panel" id="adminPanel">
-        <div class="panel-content">
-            <h2>🔑 Iniciar sesión como Administrador</h2>
-            <input type="text" id="adminUsername" placeholder="Usuario" />
-            <input type="password" id="adminPassword" placeholder="Contraseña" />
-            <button onclick="checkAdminLogin()">Iniciar sesión</button>
-            <p id="loginMessage" style="color: red; display: none;">❌ Credenciales incorrectas</p>
+    <!-- Zona de administración (oculta por defecto) -->
+    <div class="admin-console" id="adminConsole">
+        <div class="console-content">
+            <h3>🖥 Consola de Administrador</h3>
+            <input type="text" id="commandInput" placeholder="Escribe un comando..." onkeydown="if(event.key==='Enter') executeCommand()" />
+            <div id="consoleOutput"></div>
+            <button onclick="toggleAdminConsole()">Cerrar</button>
         </div>
     </div>
 
-    <div class="admin-console" id="adminConsole" style="display: none;">
-        <h3>🖥 Consola de Administrador</h3>
-        <input type="text" id="commandInput" placeholder="Escribe un comando..." onkeydown="if(event.key==='Enter') executeCommand()" />
-        <div id="consoleOutput"></div>
+    <!-- Panel de login -->
+    <div class="login-panel" id="loginPanel">
+        <div class="login-content">
+            <h2>🔑 Iniciar sesión</h2>
+            <input type="text" id="username" placeholder="Usuario" />
+            <input type="password" id="password" placeholder="Contraseña" />
+            <button onclick="loginUser()">Ingresar</button>
+            <button onclick="toggleLoginPanel()">Cerrar</button>
+        </div>
     </div>
 
     <script>
-        function toggleAdminPanel() {
-            document.getElementById('adminPanel').style.display = 'flex';
-        }
-        function checkAdminLogin() {
-            const user = document.getElementById('adminUsername').value;
-            const pass = document.getElementById('adminPassword').value;
-            if (user === 'admin' && pass === 'admin123') {
-                document.getElementById('adminPanel').style.display = 'none';
-                document.getElementById('adminConsole').style.display = 'block';
+        // Función para mostrar/ocultar la consola de administración
+        function toggleAdminConsole() {
+            let consolePanel = document.getElementById('adminConsole');
+            if (consolePanel.style.display === 'none' || consolePanel.style.display === '') {
+                consolePanel.style.display = 'flex';  // Muestra la zona de admin
             } else {
-                document.getElementById('loginMessage').style.display = 'block';
+                consolePanel.style.display = 'none';  // Oculta la zona de admin
             }
         }
+
+        // Ejecuta un comando en la consola
         function executeCommand() {
             const input = document.getElementById('commandInput');
             const output = document.getElementById('consoleOutput');
             const command = input.value;
             output.innerHTML += `<p>> ${command}</p>`;
-            if (command.startsWith('/say ')) {
-                alert(command.substring(5));
-            }
             input.value = '';
+        }
+
+        // Función para mostrar/ocultar el panel de login
+        function toggleLoginPanel() {
+            let loginPanel = document.getElementById('loginPanel');
+            if (loginPanel.style.display === 'none' || loginPanel.style.display === '') {
+                loginPanel.style.display = 'flex';  // Muestra el panel de login
+            } else {
+                loginPanel.style.display = 'none';  // Oculta el panel de login
+            }
+        }
+
+        // Función de inicio de sesión
+        function loginUser() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Comprobación de las credenciales
+            if (username === 'admin' && password === 'admin001') {
+                alert('Inicio de sesión exitoso');
+                toggleAdminConsole(); // Mostrar la consola al iniciar sesión como admin
+                toggleLoginPanel();  // Cerrar el panel de login
+            } else {
+                alert('Credenciales incorrectas. Intenta de nuevo.');
+            }
         }
     </script>
 </body>
