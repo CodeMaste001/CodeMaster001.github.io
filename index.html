@@ -75,6 +75,47 @@
             text-decoration: underline;
         }
 
+        /* Sección de Categorías */
+        .category {
+            margin-bottom: 30px;
+        }
+
+        .category h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .category p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+
+        .category .game-link {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .category .game-link a {
+            text-decoration: none;
+            color: inherit;
+            width: 200px;
+            text-align: center;
+        }
+
+        .category .game-link img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .category .game-link p {
+            font-size: 1.1em;
+        }
+
         /* Estilos del Panel de Administración */
         .admin-panel {
             display: none;
@@ -181,39 +222,22 @@
             background-color: #2980b9;
         }
 
-        /* Mensajes que se muestran en la web */
-        .message-box {
-            background-color: #f39c12;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            text-align: center;
-        }
     </style>
     <script>
-        // Credenciales predefinidas
-        const validUsername = 'admin';
-        const validPassword = 'admin123';
-        const messages = [];
+        // Funciones de JavaScript para los comandos y el inicio de sesión
+        function setActive(element) {
+            const links = document.querySelectorAll('nav a');
+            links.forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
 
         // Mostrar mensajes a todos los usuarios
         function broadcastMessage(message) {
-            messages.push(message);
-            updateMessageBoard();
-        }
-
-        function updateMessageBoard() {
             const messageBoard = document.getElementById('messageBoard');
-            messageBoard.innerHTML = ''; // Limpiar el contenido actual
-
-            // Mostrar todos los mensajes
-            messages.forEach(msg => {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message-box');
-                messageElement.textContent = msg;
-                messageBoard.appendChild(messageElement);
-            });
+            const newMessage = document.createElement('div');
+            newMessage.classList.add('message-box');
+            newMessage.textContent = message;
+            messageBoard.appendChild(newMessage);
         }
 
         function toggleAdminPanel() {
@@ -221,79 +245,47 @@
             adminPanel.style.display = (adminPanel.style.display === 'block') ? 'none' : 'block';
         }
 
-        function logToConsole(message) {
-            const consoleOutput = document.getElementById('consoleOutput');
-            consoleOutput.innerHTML += `<pre>${message}</pre>`;
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'flex';
         }
 
-        function toggleDarkMode() {
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            if (darkModeToggle.checked) {
-                document.body.style.backgroundColor = '#2c3e50';
-                document.body.style.color = '#ecf0f1';
-            } else {
-                document.body.style.backgroundColor = '#f0f0f0';
-                document.body.style.color = '#333';
-            }
-            logToConsole('Modo oscuro activado');
-        }
-
-        function setActive(element) {
-            const links = document.querySelectorAll('nav a');
-            links.forEach(link => link.classList.remove('active'));
-            element.classList.add('active');
-        }
-
-        // Función de Login
         function login(event) {
             event.preventDefault();
 
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            if (username === validUsername && password === validPassword) {
+            if (username === 'admin' && password === 'admin123') {
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
-                logToConsole('Inicio de sesión exitoso');
                 document.getElementById('adminPanel').style.display = 'block';
             } else {
                 alert('Usuario o contraseña incorrectos');
             }
         }
 
-        function showLoginForm() {
-            document.getElementById('loginForm').style.display = 'flex';
-        }
-
-        // Procesar comando /say
         function processCommand(command) {
             const args = command.split(' ');
             if (args[0] === '/say') {
                 const message = args.slice(1).join(' ');
-                if (message) {
-                    broadcastMessage(message);
-                    logToConsole(`/say ${message}`);
-                }
+                broadcastMessage(message);
             }
         }
     </script>
 </head>
 <body>
-    <!-- Contenido principal -->
     <header>
         <h1>Voxel Verse</h1>
         <p>Explora, crea y diviértete en mundos infinitos</p>
         <nav>
-            <a href="#roblox" onclick="setActive(this)">Juegos Roblox</a>
-            <a href="#minecraft" onclick="setActive(this)">Juegos Minecraft</a>
-            <a href="#videos" onclick="setActive(this)">Videos</a>
-            <a href="contact.html" onclick="setActive(this)">Contacto</a>
+            <a href="#steam" onclick="setActive(this)">Steam Workshop</a>
+            <a href="#roblox" onclick="setActive(this)">Roblox</a>
+            <a href="#proximamente" onclick="setActive(this)">Próximamente</a>
             <button class="admin-btn" onclick="showLoginForm()">Admin</button>
         </nav>
     </header>
 
-    <!-- Formulario de Login -->
-    <div class="login-form" id="loginForm">
+    <div id="loginForm" class="login-form">
         <h2>Iniciar sesión</h2>
         <form onsubmit="login(event)">
             <input type="text" id="username" placeholder="Usuario" required>
@@ -304,22 +296,33 @@
 
     <div id="mainContent" style="display:none;">
         <main>
-            <section id="roblox">
-                <h2>Explora Nuestros Juegos en Roblox</h2>
-                <p>¡Juega ahora y disfruta!</p>
-            </section>
+            <div id="steam" class="category">
+                <h2>Steam Workshop</h2>
+                <p>Explora nuestros mods favoritos en Steam Workshop</p>
+                <div class="game-link">
+                    <a href="https://steamcommunity.com/workshop" target="_blank">
+                        <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1331333249141575774/pixelcut-export_1.jpeg" alt="Steam Workshop">
+                        <p>Explora Steam Workshop</p>
+                    </a>
+                </div>
+            </div>
 
-            <section id="minecraft">
-                <h2>Próximos Juegos en Minecraft</h2>
-                <p>¡Próximamente!</p>
-            </section>
+            <div id="roblox" class="category">
+                <h2>Roblox</h2>
+                <p>Explora nuestra biblioteca de juegos en Roblox</p>
+                <div class="game-link">
+                    <a href="https://www.roblox.com/" target="_blank">
+                        <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1331333249141575774/pixelcut-export_1.jpeg" alt="Roblox">
+                        <p>Explorar Roblox</p>
+                    </a>
+                </div>
+            </div>
 
-            <section id="videos">
-                <h2>Videos de Voxel Verse</h2>
-                <p>Explora nuestro contenido en YouTube</p>
-            </section>
+            <div id="proximamente" class="category">
+                <h2>Próximamente</h2>
+                <p>Próximamente tendremos más contenido para ti</p>
+            </div>
 
-            <!-- Mensajes mostrados en la web -->
             <div id="messageBoard"></div>
         </main>
 
