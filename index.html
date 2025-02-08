@@ -148,7 +148,7 @@
 
         /* Formulario de Login */
         .login-form {
-            display: flex;
+            display: none;
             flex-direction: column;
             align-items: center;
             padding: 50px;
@@ -225,13 +225,31 @@
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
                 logToConsole('Inicio de sesión exitoso');
+                document.getElementById('adminPanel').style.display = 'block';
             } else {
                 alert('Usuario o contraseña incorrectos');
             }
         }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'flex';
+        }
     </script>
 </head>
 <body>
+    <!-- Contenido principal -->
+    <header>
+        <h1>Voxel Verse</h1>
+        <p>Explora, crea y diviértete en mundos infinitos</p>
+        <nav>
+            <a href="#roblox" onclick="setActive(this)">Juegos Roblox</a>
+            <a href="#minecraft" onclick="setActive(this)">Juegos Minecraft</a>
+            <a href="#videos" onclick="setActive(this)">Videos</a>
+            <a href="contact.html" onclick="setActive(this)">Contacto</a>
+            <button class="admin-btn" onclick="showLoginForm()">Admin</button>
+        </nav>
+    </header>
+
     <!-- Formulario de Login -->
     <div class="login-form" id="loginForm">
         <h2>Iniciar sesión</h2>
@@ -242,20 +260,7 @@
         </form>
     </div>
 
-    <!-- Contenido principal -->
     <div id="mainContent" style="display:none;">
-        <header>
-            <h1>Voxel Verse</h1>
-            <p>Explora, crea y diviértete en mundos infinitos</p>
-            <nav>
-                <a href="#roblox" onclick="setActive(this)">Juegos Roblox</a>
-                <a href="#minecraft" onclick="setActive(this)">Juegos Minecraft</a>
-                <a href="#videos" onclick="setActive(this)">Videos</a>
-                <a href="contact.html" onclick="setActive(this)">Contacto</a>
-                <button class="admin-btn" onclick="toggleAdminPanel()">Admin</button>
-            </nav>
-        </header>
-        
         <main>
             <section id="roblox">
                 <h2>Explora Nuestros Juegos en Roblox</h2>
