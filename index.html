@@ -4,351 +4,230 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voxel Verse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        /* Estilos generales */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f4f6f8;
             color: #333;
-            transition: background-color 0.3s;
         }
-
         header {
-            background-color: #2c3e50;
-            color: white;
+            background-color: #3498db;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            color: white;
         }
-
         header h1 {
             margin: 0;
-            font-size: 2.5em;
-            font-weight: bold;
+            font-size: 3em;
+            letter-spacing: 1px;
         }
-
         header p {
             font-size: 1.2em;
-        }
-
-        nav {
-            text-align: center;
             margin-top: 10px;
         }
-
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
         nav a {
             color: white;
             text-decoration: none;
             padding: 10px 20px;
-            margin: 0 15px;
-            font-size: 1.1em;
+            font-size: 1.2em;
             text-transform: uppercase;
+            letter-spacing: 1px;
             font-weight: bold;
+            border-radius: 5px;
+            margin: 0 15px;
             transition: background-color 0.3s, color 0.3s;
         }
-
         nav a:hover {
-            background-color: #3498db;
+            background-color: #2980b9;
             color: white;
         }
-
-        main {
-            padding: 40px 10%;
-        }
-
         footer {
             background-color: #2c3e50;
+            padding: 20px;
             color: white;
             text-align: center;
-            padding: 15px;
-            font-size: 1.1em;
         }
-
         footer a {
-            color: #3498db;
+            color: #ecf0f1;
             text-decoration: none;
         }
-
         footer a:hover {
-            text-decoration: underline;
+            color: #3498db;
         }
-
-        /* Sección de Categorías */
-        .category {
-            margin-bottom: 30px;
-        }
-
-        .category h2 {
-            font-size: 2em;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-
-        .category p {
-            font-size: 1.2em;
-            color: #7f8c8d;
-        }
-
-        .category .game-link {
+        .categories {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 30px;
+        }
+        .category {
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .category h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .category p {
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        .video iframe {
+            border-radius: 10px;
             margin-top: 20px;
         }
-
-        .category .game-link a {
-            text-decoration: none;
-            color: inherit;
-            width: 200px;
-            text-align: center;
-        }
-
-        .category .game-link img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
-        }
-
-        .category .game-link p {
-            font-size: 1.1em;
-        }
-
-        /* Estilos del Panel de Administración */
         .admin-panel {
             display: none;
             position: fixed;
             top: 0;
-            right: 0;
-            width: 300px;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background-color: #34495e;
-            color: white;
-            padding: 20px;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
             align-items: center;
-        }
-
-        .admin-header button {
-            background-color: #e74c3c;
-            border: none;
             color: white;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 1.2em;
         }
-
-        .admin-header button:hover {
-            background-color: #c0392b;
-        }
-
-        .settings {
-            margin-top: 20px;
-        }
-
-        .settings h3 {
-            font-size: 1.3em;
-        }
-
-        .settings input {
-            margin-top: 10px;
-        }
-
-        .console {
-            margin-top: 20px;
-            background-color: #2c3e50;
-            padding: 10px;
-            border-radius: 8px;
-            font-family: 'Courier New', monospace;
-            color: #ecf0f1;
-            height: 200px;
-            overflow-y: auto;
-        }
-
-        .console input {
-            width: 100%;
-            padding: 5px;
-            border: none;
+        .admin-panel .panel-content {
             background-color: #34495e;
-            color: #ecf0f1;
-            font-family: 'Courier New', monospace;
-        }
-
-        .console pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        /* Formulario de Login */
-        .login-form {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            padding: 50px;
-            background-color: #ecf0f1;
+            padding: 30px;
             border-radius: 10px;
-            width: 300px;
-            margin: 100px auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
         }
-
-        .login-form input {
-            margin: 10px 0;
+        .admin-panel input {
             padding: 10px;
+            margin-top: 20px;
             width: 100%;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            border: 1px solid #bdc3c7;
         }
-
-        .login-form button {
+        .admin-panel button {
             padding: 10px 20px;
             background-color: #3498db;
             color: white;
             border: none;
+            border-radius: 5px;
+            margin-top: 20px;
             cursor: pointer;
-            font-size: 1.1em;
-            margin-top: 10px;
         }
-
-        .login-form button:hover {
+        .admin-panel button:hover {
             background-color: #2980b9;
         }
-
     </style>
-    <script>
-        // Funciones de JavaScript para los comandos y el inicio de sesión
-        function setActive(element) {
-            const links = document.querySelectorAll('nav a');
-            links.forEach(link => link.classList.remove('active'));
-            element.classList.add('active');
-        }
-
-        // Mostrar mensajes a todos los usuarios
-        function broadcastMessage(message) {
-            const messageBoard = document.getElementById('messageBoard');
-            const newMessage = document.createElement('div');
-            newMessage.classList.add('message-box');
-            newMessage.textContent = message;
-            messageBoard.appendChild(newMessage);
-        }
-
-        function toggleAdminPanel() {
-            const adminPanel = document.getElementById('adminPanel');
-            adminPanel.style.display = (adminPanel.style.display === 'block') ? 'none' : 'block';
-        }
-
-        function showLoginForm() {
-            document.getElementById('loginForm').style.display = 'flex';
-        }
-
-        function login(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            if (username === 'admin' && password === 'admin123') {
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('mainContent').style.display = 'block';
-                document.getElementById('adminPanel').style.display = 'block';
-            } else {
-                alert('Usuario o contraseña incorrectos');
-            }
-        }
-
-        function processCommand(command) {
-            const args = command.split(' ');
-            if (args[0] === '/say') {
-                const message = args.slice(1).join(' ');
-                broadcastMessage(message);
-            }
-        }
-    </script>
 </head>
 <body>
     <header>
-        <h1>Voxel Verse</h1>
-        <p>Explora, crea y diviértete en mundos infinitos</p>
+        <div class="logo">
+            <h1>Voxel Verse</h1>
+            <p>Creando mundos para ti</p>
+        </div>
         <nav>
-            <a href="#steam" onclick="setActive(this)">Steam Workshop</a>
+            <a href="#steam-workshop" onclick="setActive(this)">Steam Workshop</a>
             <a href="#roblox" onclick="setActive(this)">Roblox</a>
             <a href="#proximamente" onclick="setActive(this)">Próximamente</a>
-            <button class="admin-btn" onclick="showLoginForm()">Admin</button>
+            <button class="admin-btn" onclick="toggleAdminPanel()">Admin</button>
         </nav>
     </header>
 
-    <div id="loginForm" class="login-form">
-        <h2>Iniciar sesión</h2>
-        <form onsubmit="login(event)">
-            <input type="text" id="username" placeholder="Usuario" required>
-            <input type="password" id="password" placeholder="Contraseña" required>
-            <button type="submit">Iniciar sesión</button>
-        </form>
-    </div>
-
-    <div id="mainContent" style="display:none;">
-        <main>
-            <div id="steam" class="category">
-                <h2>Steam Workshop</h2>
-                <p>Explora nuestros mods favoritos en Steam Workshop</p>
-                <div class="game-link">
-                    <a href="https://steamcommunity.com/workshop" target="_blank">
-                        <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1331333249141575774/pixelcut-export_1.jpeg" alt="Steam Workshop">
-                        <p>Explora Steam Workshop</p>
-                    </a>
+    <main>
+        <section id="steam-workshop">
+            <h2>Steam Workshop</h2>
+            <div class="categories">
+                <div class="category">
+                    <h3>Steam</h3>
+                    <p>Explora nuevos juegos y mods</p>
                 </div>
             </div>
-
-            <div id="roblox" class="category">
-                <h2>Roblox</h2>
-                <p>Explora nuestra biblioteca de juegos en Roblox</p>
-                <div class="game-link">
-                    <a href="https://www.roblox.com/" target="_blank">
-                        <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1331333249141575774/pixelcut-export_1.jpeg" alt="Roblox">
-                        <p>Explorar Roblox</p>
-                    </a>
-                </div>
+        </section>
+        
+        <section id="roblox">
+            <h2>Roblox</h2>
+            <p>Explora nuestra biblioteca de juegos</p>
+            <div class="game-link">
+                <a href="https://www.roblox.com/es/games/108520288964581/Fields" target="_blank">
+                    <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1331333249141575774/pixelcut-export_1.jpeg" alt="Fields of the Universe">
+                    <p>Fields of the Universe</p>
+                </a>
             </div>
+        </section>
+        
+        <section id="proximamente">
+            <h2>Próximamente</h2>
+            <p>¡Estén atentos a nuevas sorpresas!</p>
+        </section>
 
-            <div id="proximamente" class="category">
-                <h2>Próximamente</h2>
-                <p>Próximamente tendremos más contenido para ti</p>
+        <section id="videos">
+            <h2>Videos</h2>
+            <div class="video">
+                <h3>Video 1</h3>
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/z7kq38wYGgI" frameborder="0" allowfullscreen></iframe>
             </div>
+        </section>
+    </main>
 
-            <div id="messageBoard"></div>
-        </main>
+    <footer>
+        <p>&copy; 2024 Centrick games</p>
+        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
+        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+    </footer>
 
-        <footer>
-            <p>&copy; 2024 Voxel Verse</p>
-            <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
-            <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
-        </footer>
-
-        <!-- Admin Panel -->
-        <div class="admin-panel" id="adminPanel">
-            <div class="admin-header">
-                <h2>Panel de Administración</h2>
-                <button onclick="toggleAdminPanel()">Cerrar</button>
-            </div>
-            <div class="settings">
-                <h3>Configuración</h3>
-                <label for="darkModeToggle">Modo oscuro:</label>
-                <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
-            </div>
-            <div class="console">
-                <h3>Consola de Administración</h3>
-                <div id="consoleOutput"></div>
-                <input type="text" placeholder="Escribe un comando..." onkeyup="if(event.key === 'Enter'){ processCommand(this.value); this.value = ''; }">
-            </div>
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="panel-content">
+            <h2>Iniciar sesión como Administrador</h2>
+            <input type="text" id="adminUsername" placeholder="Usuario" />
+            <input type="password" id="adminPassword" placeholder="Contraseña" />
+            <button onclick="checkAdminLogin()">Iniciar sesión</button>
+            <p id="loginMessage" style="color: red; display: none;">Credenciales incorrectas</p>
         </div>
     </div>
+
+    <script>
+        function toggleAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function checkAdminLogin() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const correctUsername = 'admin';
+            const correctPassword = 'admin123';
+
+            if (username === correctUsername && password === correctPassword) {
+                alert('¡Bienvenido, Admin!');
+                toggleAdminPanel();
+            } else {
+                document.getElementById('loginMessage').style.display = 'block';
+            }
+        }
+
+        function setActive(link) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.style.display = 'none');
+            const targetSection = document.querySelector(link.getAttribute('href'));
+            targetSection.style.display = 'block';
+        }
+
+        // Mostrar Steam Workshop al inicio
+        setActive(document.querySelector('nav a'));
+    </script>
 </body>
 </html>
