@@ -1,1 +1,75 @@
-s
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxel Verse</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Voxel Verse</h1>
+            <p>Creando mundos para ti</p>
+        </div>
+        <nav>
+            <a href="#roblox" onclick="setActive(this)">Roblox</a>
+            <a href="#minecraft" onclick="setActive(this)">Minecraft</a>
+            <a href="#videos" onclick="setActive(this)">Videos</a>
+            <a href="contact.html" onclick="setActive(this)">Contacto</a>
+            <button class="admin-btn" onclick="toggleAdminPanel()">Admin</button>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="roblox">
+            <h2>Roblox</h2>
+            <p>Explora nuestra biblioteca de juegos</p>
+            <div class="game-link">
+                <a href="https://www.roblox.com/es/games/108520288964581/Fields" target="_blank">
+                    <img src="https://cdn.discordapp.com/attachments/1238308863476891709/1331333249141575774/pixelcut-export_1.jpeg" alt="Fields of the Universe">
+                    <p>Fields of the Universe</p>
+                </a>
+            </div>
+        </section>
+        
+        <section id="minecraft">
+            <h2>Minecraft</h2>
+            <p>Próximamente</p>
+        </section>
+        
+        <section id="videos">
+            <h2>Videos</h2>
+            <div class="video">
+                <h3>Video 1</h3>
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/z7kq38wYGgI" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Centrick games</p>
+        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
+        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+    </footer>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2>Panel de Administración</h2>
+            <button onclick="toggleAdminPanel()">Cerrar</button>
+        </div>
+        <div class="settings">
+            <h3>Configuración</h3>
+            <label for="darkModeToggle">Modo oscuro:</label>
+            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+            <h4>Créditos</h4>
+            <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
+            <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
