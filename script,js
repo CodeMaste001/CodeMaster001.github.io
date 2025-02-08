@@ -1,18 +1,34 @@
-// Activar y desactivar el panel de administración
-function toggleAdminPanel() {
-    const adminPanel = document.getElementById('adminPanel');
-    adminPanel.style.display = adminPanel.style.display === 'flex' ? 'none' : 'flex';
-}
+// script.js
 
-// Cambiar entre modo oscuro y modo claro
-function toggleDarkMode() {
-    const body = document.body;
-    body.classList.toggle('dark-mode');
-}
+// Esperar a que el DOM se haya cargado completamente
+document.addEventListener('DOMContentLoaded', function () {
+    
+    // Activar y desactivar el panel de administración
+    function toggleAdminPanel() {
+        const adminPanel = document.getElementById('adminPanel');
+        if (adminPanel) {
+            adminPanel.style.display = adminPanel.style.display === 'flex' ? 'none' : 'flex';
+        }
+    }
 
-// Hacer que el enlace activo se resalte en el menú
-function setActive(element) {
-    const links = document.querySelectorAll('nav a');
-    links.forEach(link => link.classList.remove('active'));
-    element.classList.add('active');
-}
+    // Cambiar entre modo oscuro y modo claro
+    function toggleDarkMode() {
+        const body = document.body;
+        body.classList.toggle('dark-mode');
+    }
+
+    // Hacer que el enlace activo se resalte en el menú
+    function setActive(element) {
+        const links = document.querySelectorAll('nav a');
+        links.forEach(link => link.classList.remove('active'));
+        element.classList.add('active');
+    }
+
+    // Asegúrate de que el evento de mostrar el panel funcione
+    const adminButton = document.querySelector('button');
+    if (adminButton) {
+        adminButton.addEventListener('click', toggleAdminPanel);
+    }
+
+    // Asigna los otros eventos si es necesario
+});
