@@ -215,118 +215,57 @@
                 </div>
                 <div class="feature">
                     <h3>Comunidad Activa</h3>
-                    <p>Únete a una comunidad activa y participa en eventos especiales.</p>
+                    <p>Únete a una comunidad de jugadores apasionados y activos.</p>
                 </div>
-            </div>
-        </section>
-        <section id="minecraft">
-            <h2>Minecraft</h2>
-            <p>Explora nuestra biblioteca de juegos de Minecraft</p>
-            <div class="game-link">
-                <p>Próximamente</p>
             </div>
         </section>
         <section id="videos">
-            <h2>Videos</h2>
+            <h2>Últimos Videos</h2>
             <div class="videos">
                 <div class="video">
-                    <h3>Video 1</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/z7kq38wYGgI" frameborder="0" allowfullscreen></iframe>
+                    <h3>Nuevo Tutorial en Roblox</h3>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/0jjzQz9y89w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video">
-                    <h3>Video 2</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/LjWqtPdG2Pw" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                    <h3>Video 3</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/6Zm7zsGuVFI" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                    <h3>Shorts</h3>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/xw8rG15c5ek" frameborder="0" allowfullscreen></iframe>
+                    <h3>Guía de Minecraft</h3>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/2_gW6r9IjKM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
     </main>
-    <footer id="contact">
-        <p>&copy; 2024 Centrick games</p>
-        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
-        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+    <footer>
+        <p>© 2025 Voxel Verse. Todos los derechos reservados.</p>
+        <a href="contact.html">Contacto</a>
     </footer>
-    <button class="settings-button" onclick="toggleSettings()">Configuración</button>
-    <div class="settings-bar" id="settingsBar">
-        <button class="close-settings-button" onclick="toggleSettings()">Cerrar</button>
-        <h2>Configuración</h2>
+    <div class="settings-bar" id="settings-bar">
+        <button class="close-settings-button" onclick="toggleSettingsBar()">Cerrar</button>
+        <h2>Configuración de Tema</h2>
         <label>
-            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"> Modo oscuro
+            <input type="checkbox" id="darkModeCheckbox" onclick="toggleDarkMode()"> Activar modo oscuro
         </label>
-        <h3>Créditos</h3>
-        <p>Voxel Verse es un estudio de desarrollo de juegos que crea experiencias únicas en plataformas como Roblox y Minecraft. Nuestro objetivo es ofrecer juegos divertidos y emocionantes para todos los jugadores.</p>
-        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
-        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
     </div>
-    <script src="scripts/app.js"></script>
+    <button class="settings-button" onclick="toggleSettingsBar()">Abrir Configuración</button>
+
     <script>
-        function toggleSettings() {
-            const settingsBar = document.getElementById('settingsBar');
-            if (settingsBar.classList.contains('open')) {
-                settingsBar.classList.remove('open');
-            } else {
-                settingsBar.classList.add('open');
-            }
+        function setActive(link) {
+            let links = document.querySelectorAll('nav a');
+            links.forEach(link => link.classList.remove('active'));
+            link.classList.add('active');
+        }
+
+        function toggleSettingsBar() {
+            document.getElementById('settings-bar').classList.toggle('open');
         }
 
         function toggleDarkMode() {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-        }
-
-        function setActive(element) {
-            const links = document.querySelectorAll('nav a');
-            links.forEach(link => link.classList.remove('active'));
-            element.classList.add('active');
+            if (document.getElementById('darkModeCheckbox').checked) {
+                document.body.style.backgroundColor = '#121212';
+                document.body.style.color = '#f0f0f0';
+            } else {
+                document.body.style.backgroundColor = '';
+                document.body.style.color = '';
+            }
         }
     </script>
-    <style>
-        .dark-mode {
-            background-color: #333;
-            color: #f4f4f4;
-        }
-        .dark-mode header {
-            background-color: #222;
-        }
-        .dark-mode nav {
-            background-color: #444;
-        }
-        .dark-mode footer {
-            background-color: #222;
-        }
-        .dark-mode .settings-button {
-            background-color: #222;
-        }
-        .dark-mode a {
-            color: #4CAF50; /* Verde */
-        }
-        .dark-mode a:hover {
-            color: #45a049; /* Verde más oscuro */
-        }
-        .dark-mode footer a {
-            color: #4CAF50; /* Verde */
-        }
-        .dark-mode footer a:hover {
-            color: #45a049; /* Verde más oscuro */
-        }
-        .dark-mode .discord-link, .dark-mode .game-link, .dark-mode .feature, .dark-mode .video, .dark-mode .updates-link {
-            background-color: #444;
-            color: #f4f4f4;
-        }
-        .dark-mode main {
-            background-color: rgba(51, 51, 51, 0.9);
-        }
-        .dark-mode .settings-bar {
-            background-color: #444;
-            color: #f4f4f4;
-        }
-    </style>
 </body>
 </html>
