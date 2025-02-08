@@ -180,11 +180,41 @@
         .login-form button:hover {
             background-color: #2980b9;
         }
+
+        /* Mensajes que se muestran en la web */
+        .message-box {
+            background-color: #f39c12;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
     </style>
     <script>
         // Credenciales predefinidas
         const validUsername = 'admin';
         const validPassword = 'admin123';
+        const messages = [];
+
+        // Mostrar mensajes a todos los usuarios
+        function broadcastMessage(message) {
+            messages.push(message);
+            updateMessageBoard();
+        }
+
+        function updateMessageBoard() {
+            const messageBoard = document.getElementById('messageBoard');
+            messageBoard.innerHTML = ''; // Limpiar el contenido actual
+
+            // Mostrar todos los mensajes
+            messages.forEach(msg => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message-box');
+                messageElement.textContent = msg;
+                messageBoard.appendChild(messageElement);
+            });
+        }
 
         function toggleAdminPanel() {
             const adminPanel = document.getElementById('adminPanel');
@@ -234,6 +264,18 @@
         function showLoginForm() {
             document.getElementById('loginForm').style.display = 'flex';
         }
+
+        // Procesar comando /say
+        function processCommand(command) {
+            const args = command.split(' ');
+            if (args[0] === '/say') {
+                const message = args.slice(1).join(' ');
+                if (message) {
+                    broadcastMessage(message);
+                    logToConsole(`/say ${message}`);
+                }
+            }
+        }
     </script>
 </head>
 <body>
@@ -276,6 +318,9 @@
                 <h2>Videos de Voxel Verse</h2>
                 <p>Explora nuestro contenido en YouTube</p>
             </section>
+
+            <!-- Mensajes mostrados en la web -->
+            <div id="messageBoard"></div>
         </main>
 
         <footer>
@@ -298,7 +343,7 @@
             <div class="console">
                 <h3>Consola de Administración</h3>
                 <div id="consoleOutput"></div>
-                <input type="text" placeholder="Escribe un comando..." onkeyup="if(event.key === 'Enter'){ logToConsole(this.value); this.value = ''; }">
+                <input type="text" placeholder="Escribe un comando..." onkeyup="if(event.key === 'Enter'){ processCommand(this.value); this.value = ''; }">
             </div>
         </div>
     </div>
