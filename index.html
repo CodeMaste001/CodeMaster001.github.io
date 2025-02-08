@@ -145,9 +145,47 @@
             white-space: pre-wrap;
             word-wrap: break-word;
         }
+
+        /* Formulario de Login */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            width: 300px;
+            margin: 100px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+        }
+
+        .login-form button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .login-form button:hover {
+            background-color: #2980b9;
+        }
     </style>
     <script>
-        // JavaScript para las funcionalidades
+        // Credenciales predefinidas
+        const validUsername = 'admin';
+        const validPassword = 'admin123';
+
         function toggleAdminPanel() {
             const adminPanel = document.getElementById('adminPanel');
             adminPanel.style.display = (adminPanel.style.display === 'block') ? 'none' : 'block';
@@ -175,59 +213,88 @@
             links.forEach(link => link.classList.remove('active'));
             element.classList.add('active');
         }
+
+        // Función de Login
+        function login(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === validUsername && password === validPassword) {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                logToConsole('Inicio de sesión exitoso');
+            } else {
+                alert('Usuario o contraseña incorrectos');
+            }
+        }
     </script>
 </head>
 <body>
-    <header>
-        <h1>Voxel Verse</h1>
-        <p>Explora, crea y diviértete en mundos infinitos</p>
-        <nav>
-            <a href="#roblox" onclick="setActive(this)">Juegos Roblox</a>
-            <a href="#minecraft" onclick="setActive(this)">Juegos Minecraft</a>
-            <a href="#videos" onclick="setActive(this)">Videos</a>
-            <a href="contact.html" onclick="setActive(this)">Contacto</a>
-            <button class="admin-btn" onclick="toggleAdminPanel()">Admin</button>
-        </nav>
-    </header>
-    
-    <main>
-        <section id="roblox">
-            <h2>Explora Nuestros Juegos en Roblox</h2>
-            <p>¡Juega ahora y disfruta!</p>
-        </section>
+    <!-- Formulario de Login -->
+    <div class="login-form" id="loginForm">
+        <h2>Iniciar sesión</h2>
+        <form onsubmit="login(event)">
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
 
-        <section id="minecraft">
-            <h2>Próximos Juegos en Minecraft</h2>
-            <p>¡Próximamente!</p>
-        </section>
+    <!-- Contenido principal -->
+    <div id="mainContent" style="display:none;">
+        <header>
+            <h1>Voxel Verse</h1>
+            <p>Explora, crea y diviértete en mundos infinitos</p>
+            <nav>
+                <a href="#roblox" onclick="setActive(this)">Juegos Roblox</a>
+                <a href="#minecraft" onclick="setActive(this)">Juegos Minecraft</a>
+                <a href="#videos" onclick="setActive(this)">Videos</a>
+                <a href="contact.html" onclick="setActive(this)">Contacto</a>
+                <button class="admin-btn" onclick="toggleAdminPanel()">Admin</button>
+            </nav>
+        </header>
+        
+        <main>
+            <section id="roblox">
+                <h2>Explora Nuestros Juegos en Roblox</h2>
+                <p>¡Juega ahora y disfruta!</p>
+            </section>
 
-        <section id="videos">
-            <h2>Videos de Voxel Verse</h2>
-            <p>Explora nuestro contenido en YouTube</p>
-        </section>
-    </main>
+            <section id="minecraft">
+                <h2>Próximos Juegos en Minecraft</h2>
+                <p>¡Próximamente!</p>
+            </section>
 
-    <footer>
-        <p>&copy; 2024 Voxel Verse</p>
-        <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
-        <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
-    </footer>
+            <section id="videos">
+                <h2>Videos de Voxel Verse</h2>
+                <p>Explora nuestro contenido en YouTube</p>
+            </section>
+        </main>
 
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-header">
-            <h2>Panel de Administración</h2>
-            <button onclick="toggleAdminPanel()">Cerrar</button>
-        </div>
-        <div class="settings">
-            <h3>Configuración</h3>
-            <label for="darkModeToggle">Modo oscuro:</label>
-            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
-        </div>
-        <div class="console">
-            <h3>Consola de Administración</h3>
-            <div id="consoleOutput"></div>
-            <input type="text" placeholder="Escribe un comando..." onkeyup="if(event.key === 'Enter'){ logToConsole(this.value); this.value = ''; }">
+        <footer>
+            <p>&copy; 2024 Voxel Verse</p>
+            <p>Creadores: Alex Dv, Rogsc y el gato de Rogsc</p>
+            <p>Contacto: <a href="mailto:centrickgamesstudios@gmail.com">centrickgamesstudios@gmail.com</a></p>
+        </footer>
+
+        <!-- Admin Panel -->
+        <div class="admin-panel" id="adminPanel">
+            <div class="admin-header">
+                <h2>Panel de Administración</h2>
+                <button onclick="toggleAdminPanel()">Cerrar</button>
+            </div>
+            <div class="settings">
+                <h3>Configuración</h3>
+                <label for="darkModeToggle">Modo oscuro:</label>
+                <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+            </div>
+            <div class="console">
+                <h3>Consola de Administración</h3>
+                <div id="consoleOutput"></div>
+                <input type="text" placeholder="Escribe un comando..." onkeyup="if(event.key === 'Enter'){ logToConsole(this.value); this.value = ''; }">
+            </div>
         </div>
     </div>
 </body>
