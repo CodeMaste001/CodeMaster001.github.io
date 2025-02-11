@@ -1,12 +1,19 @@
-<link rel="stylesheet" href="styles/style.css">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - Página no encontrada</title>
+    <link rel="stylesheet" href="styles/style.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://cdn.discordapp.com/attachments/1238308863476891709/1331789480188842065/29_sin_titulo_20250122185547.png?ex=6792e51b&is=6791939b&hm=5a2a414032f6bdf7d41661075b4e9a07be3d016392c043c46cadf5574e9d080c&') no-repeat center center fixed;
+            background: url('https://cdn.discordapp.com/attachments/1315402050657583196/1338686735629942795/HTML-404-Error-Page.gif?ex=67abfcad&is=67aaab2d&hm=18f9ef2d3a7392585acf531ca741c747476895156899ef11f8e9186b80aafd8c&') 
+            no-repeat center center fixed;
             background-size: cover;
-            color: #333;
+            color: #fff;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -14,32 +21,55 @@
             height: 100vh;
             text-align: center;
         }
+
         .error-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.7); /* Oscurece un poco para mejor lectura */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
+
         h1 {
-            font-size: 3em;
+            font-size: 5em;
             margin: 0;
-        }
-        p {
-            font-size: 1.2em;
-        }
-        a {
-            color: #4CAF50;
-            text-decoration: none;
             font-weight: bold;
-            background-color: #f0f0f0;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            color: #ff4c4c;
         }
-        a:hover {
-            text-decoration: none;
-            background-color: #4CAF50;
+
+        p {
+            font-size: 1.3em;
+            margin: 10px 0;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
             color: #fff;
+            background: linear-gradient(45deg, #ff4c4c, #ff9900);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 76, 76, 0.5);
+        }
+
+        /* Responsivo */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .error-container {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -48,6 +78,7 @@
         <h1>404</h1>
         <p>Página no encontrada</p>
         <p>Lo sentimos, pero la página que estás buscando no existe.</p>
-        <p><a href="index.html">Volver a la página principal</a></p>
+        <a href="index.html">Volver al inicio</a>
     </div>
 </body>
+</html>
