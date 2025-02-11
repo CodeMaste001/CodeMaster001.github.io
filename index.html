@@ -135,7 +135,7 @@
 <body>
     <header>
         <h1>Voxel Verse 🚀</h1>
-        <p>CTodos nuestros sueños pueden hacerse realidad, si tenemos el coraje de perseguirlos ☄️</p>
+        <p>Todos nuestros sueños pueden hacerse realidad, si tenemos el coraje de perseguirlos ☄️</p>
         <nav>
             <a href="updates.html">🎮 Actualizaciones</a>
             <a href="contact.html">🧾 Contacto</a>
@@ -164,7 +164,7 @@
     </footer>
 
     <script>
-        const apiKey = 'AIzaSyCN1mR57K7dr91xPS5tetkcwBtQ4QUgZJE';  // Tu clave API de YouTube
+        const apiKey = 'AIzaSyDSG1mEow0NJr0loriVnS9FOn_7SFN9kTo';  // Nueva clave API de YouTube
         const channelIds = [
             'UCfbjCekh8ai0Fe_jUPrY50A',  // ID de CENTRICKGamesStudios
             'UCGIWVAhQ-ukvFlx25-k6lPA'   // ID de Sonicinsano778
@@ -172,10 +172,18 @@
 
         // Función para obtener los videos más recientes de un canal
         async function fetchVideos(channelId) {
-            const url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&order=date&part=snippet&type=video&maxResults=5`;
-            const response = await fetch(url);
-            const data = await response.json();
-            return data.items;
+            try {
+                const url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&order=date&part=snippet&type=video&maxResults=5`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('No se pudo obtener videos');
+                }
+                const data = await response.json();
+                return data.items;
+            } catch (error) {
+                console.error('Error al cargar los videos:', error);
+                return []; // Regresa un arreglo vacío en caso de error
+            }
         }
 
         // Función para insertar los videos en la página
@@ -185,6 +193,9 @@
 
             for (let i = 0; i < channelIds.length; i++) {
                 const videos = await fetchVideos(channelIds[i]);
+                if (videos.length === 0) {
+                    container.innerHTML = '<p>No se pudieron cargar los videos en este momento.</p>';
+                }
                 videos.forEach(video => {
                     const videoElement = document.createElement('div');
                     videoElement.classList.add('video-item');
