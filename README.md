@@ -4,24 +4,41 @@
 
 ## English
 
-We are responsible for working on games and Discord projects. We make Roblox games and Minecraft servers.
+We specialize in developing games and Discord projects, focusing on Roblox games and Minecraft servers.
 
-Our services consist of people who use our services and servers to play.
+### Our Services
+- Creation and maintenance of Roblox games and Minecraft servers.
+- Public and transparent code to ensure security and privacy.
+- A community-driven experience where players can enjoy our services.
 
-Updates on the page: press contact and when it opens, it will take you to another section where it will say updates. Click there, and all parts of our websites will be displayed. Our code is public so that you can see that there is no virus and we do not try to steal personal data.
+### Updates
+To stay informed about updates:
+1. Click on the "Contact" section on our website.
+2. A new section will open where you will find "Updates."
+3. Click there to see all the latest information about our projects.
 
-Discord: [https://discord.gg/9NTknVCncT](https://discord.gg/9NTknVCncT)
+### Contact & Support
+- **Discord:** [https://discord.gg/9NTknVCncT](https://discord.gg/9NTknVCncT)
+- Currently, support is available in Spanish. English support will be provided in the future if the project expands successfully.
 
-For now, we are only providing support to Spanish speakers. English support will be available soon if the project is successful.
+---
 
 ## Español
 
-Nosotros nos encargamos de trabajar en juegos y proyectos de Discord. Hacemos juegos de Roblox y servidores de Minecraft.
+Nos especializamos en el desarrollo de juegos y proyectos para Discord, centrándonos en juegos de Roblox y servidores de Minecraft.
 
-Nuestros servicios constan de las personas que usan nuestros servicios y servidores para jugar.
+### Nuestros Servicios
+- Creación y mantenimiento de juegos de Roblox y servidores de Minecraft.
+- Código público y transparente para garantizar seguridad y privacidad.
+- Una experiencia enfocada en la comunidad para que los jugadores disfruten de nuestros servicios.
 
-Actualizaciones en la página: presiona contacto y cuando se abra, te llevará a otra sección donde dirá actualizaciones. Haz clic allí, y se mostrarán todas las partes de nuestras webs. Nuestro código es público para que veas que no existe ningún virus y no tratamos de robar datos personales.
+### Actualizaciones
+Para mantenerte informado sobre actualizaciones:
+1. Haz clic en la sección "Contacto" en nuestra página web.
+2. Se abrirá una nueva sección donde encontrarás "Actualizaciones."
+3. Haz clic allí para ver la información más reciente sobre nuestros proyectos.
 
-Discord: [https://discord.gg/9NTknVCncT](https://discord.gg/9NTknVCncT)
+### Contacto & Soporte
+- **Discord:** [https://discord.gg/9NTknVCncT](https://discord.gg/9NTknVCncT)
+- Actualmente, el soporte está disponible solo en español. Próximamente ofreceremos soporte en inglés si el proyecto crece exitosamente.
 
-Por ahora, solo estamos dando soporte a los hispanos. Próximamente en inglés si el proyecto funciona.
