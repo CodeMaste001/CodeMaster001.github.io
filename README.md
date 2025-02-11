@@ -1,6 +1,6 @@
 # Voxel Verse
 
-![Voxel Verse Logo](https://cdn.discordapp.com/attachments/1267235274518302860/1331735018082668667/Captura_de_pantalla_2024-12-21_134449-removebg-preview.png?ex=6792b262&is=679160e2&hm=a5ffce9eb51bbd29f9ae4ebd39124b77950402795a193f988370ef8dc6f39476&)
+![Voxel Verse Logo](https://media.discordapp.net/attachments/1238308863476891709/1331466157269454858/Captura_de_pantalla_2024-12-21_134449.png?ex=67acbebd&is=67ab6d3d&hm=eb31fd7b6030bc05142966d0b2cbbf4e8c78a2d85a250346e731487abca1832f&=)
 
 ## English
 
