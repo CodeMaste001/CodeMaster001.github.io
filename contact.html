@@ -17,6 +17,12 @@
             min-height: 100vh;
         }
 
+        header {
+            background-color: #FF6347;
+            padding: 15px;
+            text-align: center;
+        }
+
         .youtube-announcement {
             background-color: #FF6347;
             color: white;
@@ -36,6 +42,39 @@
         .youtube-announcement iframe:hover {
             transform: scale(1.05);
         }
+
+        .contact-form {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 20px;
+            border-radius: 8px;
+        }
+
+        .contact-form label {
+            font-weight: bold;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .contact-form button {
+            background-color: #22313F; 
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .contact-form button:hover {
+            background-color: #1A242F; 
+        }
     </style>
 </head>
 <body>
@@ -44,10 +83,28 @@
         <h1>Contacto - Voxel Verse</h1>
     </header>
 
-    <!-- Anuncio de YouTube (con el enlace del video) -->
+    <!-- Anuncio de YouTube -->
     <div class="youtube-announcement" id="youtube-announcement">
         <h3>¡Mira nuestro último video!</h3>
+        <p>Este es el video más reciente de nuestro canal:</p>
         <!-- El iframe se agregará dinámicamente aquí -->
+    </div>
+
+    <!-- Formulario de contacto -->
+    <div class="contact-form">
+        <h2>Ponte en contacto con nosotros</h2>
+        <form action="mailto:centrickgamesstudios@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" value="centrickgamesstudios@gmail.com" readonly>
+
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
     </div>
 
     <script>
@@ -65,53 +122,32 @@
                 .then(data => {
                     if (data.items && data.items.length > 0) {
                         const videoId = data.items[0].id.videoId;
-                        const videoTitle = data.items[0].snippet.title;
-                        callback(videoId, videoTitle);
+                        callback(videoId);
                     }
                 })
                 .catch(error => console.error('Error al obtener el video:', error));
         }
 
-        // Mostrar el video del canal principal (Sonicinsano778) con prioridad
-        function showVideos() {
-            // Obtiene el video más reciente de Sonicinsano778
-            getLatestVideo(CHANNEL_ID_2, (videoId, videoTitle) => {
+        // Mostrar el video más reciente
+        function showLatestVideo() {
+            // Obtén el video más reciente de Sonicinsano778 (canal principal)
+            getLatestVideo(CHANNEL_ID_2, (videoId) => {
                 const iframe = document.createElement('iframe');
                 iframe.src = `https://www.youtube.com/embed/${videoId}`;
                 iframe.frameBorder = "0";
                 iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
                 iframe.allowFullscreen = true;
 
-                // Actualiza el anuncio con el video de Sonicinsano778
+                // Actualiza el anuncio con el video
                 document.getElementById('youtube-announcement').innerHTML = `
                     <h3>¡Mira nuestro último video de Sonicinsano778!</h3>
-                    <p>${videoTitle}</p>
+                    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 `;
-                document.getElementById('youtube-announcement').appendChild(iframe);
-
-                // Después de mostrar el video principal, obtén el video de CENTRICKGamesStudios-xo9ij
-                getLatestVideo(CHANNEL_ID_1, (videoId, videoTitle) => {
-                    const iframe = document.createElement('iframe');
-                    iframe.src = `https://www.youtube.com/embed/${videoId}`;
-                    iframe.frameBorder = "0";
-                    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
-                    iframe.allowFullscreen = true;
-
-                    // Añade el video secundario debajo del principal
-                    const secondaryDiv = document.createElement('div');
-                    secondaryDiv.classList.add('youtube-announcement');
-                    secondaryDiv.innerHTML = `
-                        <h3>¡Mira el último video de CENTRICKGamesStudios!</h3>
-                        <p>${videoTitle}</p>
-                    `;
-                    secondaryDiv.appendChild(iframe);
-                    document.body.appendChild(secondaryDiv); // Agrega el video al final de la página
-                });
             });
         }
 
-        // Llama a la función cuando cargue la página
-        window.onload = showVideos;
+        // Llama a la función para mostrar el video
+        window.onload = showLatestVideo;
     </script>
 
 </body>
