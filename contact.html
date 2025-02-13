@@ -90,15 +90,15 @@
         <!-- El iframe se agregará dinámicamente aquí -->
     </div>
 
-    <!-- Formulario de contacto -->
+    <!-- Formulario de contacto (usando Formspree para evitar el error de Mixed Content) -->
     <div class="contact-form">
         <h2>Ponte en contacto con nosotros</h2>
-        <form action="mailto:centrickgamesstudios@gmail.com" method="post" enctype="text/plain">
+        <form action="https://formspree.io/f/{tu_endpoint}" method="POST">
             <label for="name">Nombre:</label>
             <input type="text" id="name" name="name" required>
 
             <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" value="centrickgamesstudios@gmail.com" readonly>
+            <input type="email" id="email" name="email" required>
 
             <label for="message">Mensaje:</label>
             <textarea id="message" name="message" rows="5" required></textarea>
@@ -110,6 +110,7 @@
     <script>
         // Reemplaza esto con las claves de los canales
         const API_KEY = 'AIzaSyDSG1mEow0NJr0loriVnS9FOn_7SFN9kTo';
+        const CHANNEL_ID_1 = 'UC8ptJzKIoT7tClfQjSXM4vA'; // CENTRICKGamesStudios-xo9ij
         const CHANNEL_ID_2 = 'UCZXl5t6p4J56trvcsw0Bxhg'; // Sonicinsano778
         
         // Función para obtener el video más reciente de un canal
@@ -131,23 +132,21 @@
         function showLatestVideo() {
             // Obtén el video más reciente de Sonicinsano778 (canal principal)
             getLatestVideo(CHANNEL_ID_2, (videoId) => {
-                // Genera el iframe del video
                 const iframe = document.createElement('iframe');
                 iframe.src = `https://www.youtube.com/embed/${videoId}`;
                 iframe.frameBorder = "0";
                 iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
                 iframe.allowFullscreen = true;
 
-                // Limpia el contenido del div y agrega el iframe
-                const youtubeAnnouncement = document.getElementById('youtube-announcement');
-                youtubeAnnouncement.innerHTML = `
+                // Actualiza el anuncio con el video
+                document.getElementById('youtube-announcement').innerHTML = ` 
                     <h3>¡Mira nuestro último video de Sonicinsano778!</h3>
+                    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 `;
-                youtubeAnnouncement.appendChild(iframe);
             });
         }
 
-        // Llama a la función para mostrar el video cuando la página cargue
+        // Llama a la función para mostrar el video
         window.onload = showLatestVideo;
     </script>
 
